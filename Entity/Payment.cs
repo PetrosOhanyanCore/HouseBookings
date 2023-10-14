@@ -48,5 +48,6 @@ namespace Entity
         EUR, // Euro
         GBP, // Funt-Sterling
         JPY, // Japan Iyen
-                // others
+             // others
     }
+}
