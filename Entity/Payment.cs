@@ -46,7 +46,7 @@ namespace Entity
         {
             USD, // Dollar USA
             EUR, // Euro
-            GBP, // Funt-Sterling
+            GBP, // Pound-Sterling
             JPY, // Japan Iyen
                  // others
         }
