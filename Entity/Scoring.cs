@@ -8,16 +8,12 @@ namespace Entity
 {
     public class Scoring
     {
-        public int BuildingId { get; set; }
-        public int PenthousId { get; set; }
-        public int TownhousId { get; set; }
-        public int ApartmentId { get; set; }
-        public int ClientId { get; set; }
+        public bool? IsBuilding { get; set; }
+        public bool? IsApartment { get; set; }
+        public bool? IsClient { get; set; }
 
-        public DateTime date { get; set; }
-        public string Comment { get; set; }
-
-
-    }
- 
+        public DateTime Date { get; set; }
+        public int? Rate { get;set; }
+        public string? Comment { get; set; }
+    } 
 }
