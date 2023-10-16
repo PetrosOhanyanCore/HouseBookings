@@ -15,38 +15,37 @@ namespace Entity
         public class Payment
         {
             [Key]
-            public int PaymentId { get; set; }
+            public int Id { get; set; }
 
-            [Required]
-            public decimal Amount { get; set; }
+            public decimal? Amount { get; set; }
 
             [Required]
             public Currency CurrencyCode { get; set; }
 
             [Required]
-            [StringLength(16, MinimumLength = 16)]
+            [StringLength(16)]
             public int CardNumber { get; set; }
+
+            [Required]
+            [Range(1, 12)]
+            public int CardExpireMonth { get; set; }
+
+            [Required]
+            [StringLength(2)]
+            public int CardExpireYear { get; set; }
 
             [Required]
             public string CardOwner { get; set; }
 
-            [Range(100, 999)]
+            [MinLength(3), MaxLength(4)]
             public short CVV { get; set; }
 
             [Required]
             [DataType(DataType.DateTime)]
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public DateTime PaymentDate { get; set; }
 
-            //public int BookingId { get; set; }
-
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int OrderId { get; set; }
-
-            public Payment()
-            {
-
-            }
+            public int BookingId { get; set; }
+            public Booking Booking { get; set; }
         }
 
         public enum Currency
