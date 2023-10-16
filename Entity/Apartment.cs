@@ -8,10 +8,8 @@ namespace Entity
 {
     public class Apartment
     {
-        //public int ApartmentID { get; set; }
         public int Id { get; set; }
-        //public string Name { get; set; }    
-        public Translation Description { get; set; }
+        public Translation Translation { get; set; }
         public decimal Price { get; set; }
         public int RoomsCount { get; set; }
         public int Bathrooms { get; set; }

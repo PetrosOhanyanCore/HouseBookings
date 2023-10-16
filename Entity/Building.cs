@@ -23,6 +23,8 @@ namespace Entity
         public double? ApartmentSquareMin { get; set; }
         public double? ApartmentSquareMax { get; set; }
 
+        public Translation Translation { get; set; }
+
         public ICollection<Image> Images { get; set; }
         public IEnumerable<Apartment> Apartments { get; set; }
 

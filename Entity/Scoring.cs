@@ -15,6 +15,7 @@ namespace Entity
         public DateTime Date { get; set; }
         public int? Rate { get;set; }
         public string? Comment { get; set; }
+        public Translation Translation { get; set; }
     } 
 
 }

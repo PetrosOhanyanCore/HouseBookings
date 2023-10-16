@@ -12,6 +12,7 @@ namespace Entity
 
         public int ApartmentId { get; set; }
         public Apartment Apartment { get; set; }
+        public Translation Description { get; set; }
 
         public int ClientId { get; set; }
         public Client Client { get; set; }
