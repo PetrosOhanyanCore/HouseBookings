@@ -17,13 +17,13 @@ namespace Entity
         public Currency CurrencyCode { get; set; }
 
         [Required]
-        [StringLength(16)]
+        [StringLength(16, MinimumLength = 16)]
         public int CardNumber { get; set; }
 
         [Required]
         public string CardOwner { get; set; }
 
-        [MaxLength(3)]
+        [Range(100, 999)]
         public short CVV { get; set; }
 
         [Required]
@@ -46,7 +46,7 @@ namespace Entity
     {
         USD, // Dollar USA
         EUR, // Euro
-        GBP, // Funt-Sterling
+        GBP, // Pound-Sterling
         JPY, // Japan Iyen
              // others
     }
