@@ -19,12 +19,14 @@ namespace DataLayer
         }
 
         public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<Scoring> Scorings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ApartmentEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ScoringEntityConfiguration());
 
         }
     }
