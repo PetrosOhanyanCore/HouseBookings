@@ -8,18 +8,13 @@ namespace Entity
 {
     public class Scoring
     {
-        public int BuildingId{get; set;}
-        public int BuildingRating{get;set;}
-        public int PenthousId{get; set;}
-        public int PenthousRating{get; set;}
-        public int TownhousId{get; set;}
-        public int TownhousRating{ get; set;}
-        public int ApartmentId{get; set;}
-        public int ApartmentRating{get; set;}
-        public int ClientUserId{get; set;}
-        public int ClientUserRating{get; set;}
-        public int ClientOwnerId{get; set;}
-        public int ClientOwnerRating{get;set;}
-    }
- 
+        public bool? IsBuilding { get; set; }
+        public bool? IsApartment { get; set; }
+        public bool? IsClient { get; set; }
+
+        public DateTime Date { get; set; }
+        public int? Rate { get;set; }
+        public string? Comment { get; set; }
+    } 
+
 }

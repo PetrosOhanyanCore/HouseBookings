@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Translation
+    public class Image
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string En { get; set; }
-        public string Rus { get; set; }
-        public string Arm { get; set; }
+        public string ImageName { get; set; }
+
+        public int ApartmentId { get; set; }
+        public Apartment Apartment { get; set; }
     }
 }
