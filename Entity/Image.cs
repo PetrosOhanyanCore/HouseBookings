@@ -11,7 +11,7 @@ namespace Entity
         public int Id { get; set; }
         public string ImageName { get; set; }
 
-        public int ApartmentId { get; set; }
+        public int PropertyId { get; set; }
         public Apartment Apartment { get; set; }
     }
 }

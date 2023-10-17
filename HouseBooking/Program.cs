@@ -1,6 +1,7 @@
 using DataLayer;
+using DataLayer.IRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using DataLayer.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection")
                     ));
 // Add services to the container.
+builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

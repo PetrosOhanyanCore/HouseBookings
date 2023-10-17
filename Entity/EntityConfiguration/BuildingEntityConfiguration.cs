@@ -27,7 +27,7 @@ namespace Entity.EntityConfiguration
 
             builder.HasMany(b => b.Images)
                 .WithOne()
-                .HasForeignKey(i => i.ApartmentId)
+                .HasForeignKey(i => i.PropertyId)
                 .IsRequired();
 
 
