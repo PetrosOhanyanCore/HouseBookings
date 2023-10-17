@@ -8,6 +8,7 @@ namespace Entity
 {
     public class Scoring
     {
+        public int Id { get; set; }
         public bool? IsBuilding { get; set; }
         public bool? IsApartment { get; set; }
         public bool? IsClient { get; set; }
