@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.Entity;
 
 namespace Entity
 {
@@ -24,6 +25,7 @@ namespace Entity
 
         public DateTime? CancelationDate { get; set; }
         public CancelationReason? CancelationReason { get; set; }
+        public Payment Payment { get; set; } // added for Payment 
     }
 
     public enum CancelationReason

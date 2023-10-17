@@ -12,8 +12,10 @@ namespace Entity.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Scoring> builder)
         {
+            
             builder.ToTable("Scoring");
             builder.HasKey(i => i.Id);
+
             builder.Property(p => p.Comment).HasMaxLength(400);
            
             
