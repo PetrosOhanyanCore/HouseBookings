@@ -13,7 +13,7 @@ namespace Entity
 		public string City{ get; set; }
 		public string District { get; set; }
 		public string Street { get; set; }
-        public string Building { get; set; }
+        public Building Building { get; set; }
         public string? House { get; set; }
 	}
 }

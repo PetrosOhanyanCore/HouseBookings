@@ -19,7 +19,6 @@ namespace Entity
         public bool HasParking { get; set; }
         public bool HasElevator { get; set; }
 
-        public int? ApartmentCount { get; set; }
         public double? ApartmentSquareMin { get; set; }
         public double? ApartmentSquareMax { get; set; }
 
