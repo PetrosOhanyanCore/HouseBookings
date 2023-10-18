@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,6 @@ namespace Entity.EntityConfiguration
             builder.Property(p => p.Discription).HasMaxLength(500);
             builder.HasOne(p => p.Building).WithMany(p => p.Options).HasForeignKey(k => k.BuildingId);
             builder.HasOne(p => p.Apartment).WithMany(p => p.Options).HasForeignKey(k => k.ApartmentId);
-            builder.HasOne(p => p.Translation);
         }
     }
 }
