@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
+    public class RepositoryBase<TEntity> 
+        : IRepositoryBase<TEntity> where TEntity : class
     {
         #region Variables
 

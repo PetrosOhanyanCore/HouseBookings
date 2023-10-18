@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
-    public class ApartmentRepository : RepositoryBase<Apartment>, IApartmentRepository
+    public class ApartmentRepository
+        : RepositoryBase<Apartment>,
+        IApartmentRepository
     {
-        public ApartmentRepository(DataBaseContext context) 
+        public ApartmentRepository(DataBaseContext context)
             : base(context)
         {
         }
@@ -19,15 +21,16 @@ namespace DataLayer.Repository
         public IEnumerable<Apartment> GetAllApartments(int buildingId)
         {
             List<Apartment> models = _context.Apartments
-            .Where(p => p.BuildingId == buildingId)            
+            .Where(p => p.BuildingId == buildingId)
             .ToList();
 
             return models;
         }
 
-        public Task<Apartment> GetApartmentByIdAsync(int id)
+        public async Task<Apartment> GetApartmentByIdAsync(int id)
         {
-            return _context.Apartments.FirstOrDefaultAsync(i => i.Id == id);
+            var result = await _context.Apartments.FirstOrDefaultAsync(i => i.Id == id);
+            return result;
         }
 
         public /*async*/ Task<ICollection<Image>> GetImages(int apartmentId)
@@ -44,7 +47,8 @@ namespace DataLayer.Repository
         {
             var count = _context.Apartments
                             .Include(i => i.Images)
-                            .Where(p => p.Images.Any(s => s.Id == id))
+                            .Where(p => p.Images
+                                .Any(s => s.Id == id))
                             .SelectMany(s => s.Images)
                             .Count();
 
