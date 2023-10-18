@@ -39,5 +39,6 @@ namespace Entity
 
         public ICollection<Image> Images { get; set; }
         public ICollection<Booking> Bookings { get; set; }
+        public ICollection<Options> Options { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace Entity
         public int? LivingAddressId { get; set; }
         public Address LivingAddress { get; set; }
         public ICollection<Apartment> Apartments { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
 
 
     }

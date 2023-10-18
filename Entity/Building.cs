@@ -26,6 +26,7 @@ namespace Entity
 
         public ICollection<Image> Images { get; set; }
         public IEnumerable<Apartment> Apartments { get; set; }
+        public ICollection<Options> Options { get; set; }
 
     }
 }

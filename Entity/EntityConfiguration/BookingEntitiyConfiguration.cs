@@ -17,8 +17,13 @@ namespace Entity.EntityConfiguration
             builder.HasKey(k => k.Id);
 
             builder.Property(p => p.Note).HasMaxLength(200);
-            //builder.HasForeignKey(c => c.ClientId);
-            //builder.HasForeignKey(b => b.ApartmentId);
+            builder
+                .HasOne(b => b.Client)
+                .WithMany(b => b.Bookings)
+                .HasForeignKey(c => c.ClientId);
+            builder.HasOne(a => a.Apartment)
+                .WithOne()
+                .HasForeignKey<Apartment>(b => b.Id);
             builder.Property(b => b.BookingEndDate).IsRequired();
             builder.Property(b => b.CancelationReason).HasConversion<int?>();
             builder.Property(b => b.CancelationReason).IsRequired(false);
