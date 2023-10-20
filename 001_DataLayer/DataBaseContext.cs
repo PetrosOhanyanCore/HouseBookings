@@ -23,6 +23,8 @@ namespace DataLayer
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Options> Options { get; set; }
 
+        public DbSet<Building> Buildings { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,6 +33,7 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(new ScoringEntityConfiguration());
             modelBuilder.ApplyConfiguration(new AddressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OptionsEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
 
         }
     }
