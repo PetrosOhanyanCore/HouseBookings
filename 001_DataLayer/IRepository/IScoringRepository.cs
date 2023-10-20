@@ -9,5 +9,17 @@ namespace DataLayer.IRepository
 {
     public interface IScoringRepository : IRepositoryBase<Scoring>
     {
+
+        IEnumerable<Scoring> GetClientAllScoring(int IdClinet);
+
+        IEnumerable<Scoring> GetAllApartment();
+
+        IEnumerable<Scoring> GetAllBuilding();
+
+        IEnumerable<Scoring> GetClientScoringApartment(int IdClinet, int IdApartment);
+
+        IEnumerable<Scoring> GetClientScoringBuilding(int IdClinet, int IdBuilding);
+
+
     }
 }
