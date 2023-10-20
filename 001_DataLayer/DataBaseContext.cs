@@ -22,6 +22,7 @@ namespace DataLayer
         public DbSet<Scoring> Scorings { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Options> Options { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
