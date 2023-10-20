@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.Entity;
 using Entity.EntityConfiguration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace DataLayer
         public DbSet<Scoring> Scorings { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Options> Options { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,7 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(new ScoringEntityConfiguration());
             modelBuilder.ApplyConfiguration(new AddressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OptionsEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentEntityConfiguartion());
 
         }
     }
