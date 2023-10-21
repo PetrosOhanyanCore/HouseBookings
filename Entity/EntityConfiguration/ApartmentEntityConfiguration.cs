@@ -18,8 +18,12 @@ namespace Entity.EntityConfiguration
             builder.Property(p => p.Section).HasMaxLength(50);
             builder.Property(p => p.Number).HasMaxLength(20);
 
-            builder.HasOne(p => p.Building).WithMany(p => p.Apartments).HasForeignKey(k => k.BuildingId);
-            builder.HasMany(p => p.Images).WithOne(p => p.Apartment).HasForeignKey(k => k.PropertyId);
+            builder.HasOne(p => p.Building)
+                .WithMany(p => p.Apartments)
+                .HasForeignKey(k => k.BuildingId);
+            builder.HasMany(p => p.Images)
+                .WithOne(p => p.Apartment)
+                .HasForeignKey(k => k.PropertyId);
             builder.HasOne(p => p.Translation);
         }
     }
