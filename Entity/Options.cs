@@ -9,7 +9,7 @@ namespace Entity
     public class Options
     {
 
-        public int Id { get; set; }
+        public int Id { get ; set; }
         public int ApartmentId { get; set; }
         public Apartment Apartment { get; set; }
         public int BuildingId { get; set; }
