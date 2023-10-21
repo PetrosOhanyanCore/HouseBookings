@@ -1,6 +1,5 @@
 ﻿using DataLayer.IRepository;
 using Entity;
-using Entity.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
