@@ -27,7 +27,7 @@ namespace DataLayer.Repository
         public IEnumerable<Scoring> GetAllApartment()
         {
             List<Scoring> models = _context.Scorings
-            .Where(p => p.IsApartment == true)
+            .Where(p => p.ApartmentId != null)
             .ToList();
 
             return models;
@@ -35,7 +35,7 @@ namespace DataLayer.Repository
         public IEnumerable<Scoring> GetAllBuilding()
         {
             List<Scoring> models = _context.Scorings
-            .Where(p => p.IsBuilding == true)
+            .Where(p => p.BuildingId != null)
             .ToList();
 
             return models;

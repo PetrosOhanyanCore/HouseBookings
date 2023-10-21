@@ -74,6 +74,11 @@ namespace DataLayer.Repository
             return results;
         }
 
+        public Task<int> GetBuildingsCountByCityAsync(string city)
+        {
+            throw new NotImplementedException();
+        }
+
         //public async Task<int> GetBuildingsCountByCityAsync(string city)
         //{
         //    var count = await _context.Addresses
