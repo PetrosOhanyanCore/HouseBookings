@@ -33,6 +33,7 @@ namespace DataLayer
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ApartmentEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ScoringEntityConfiguration());
             modelBuilder.ApplyConfiguration(new AddressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OptionsEntityConfiguration());
