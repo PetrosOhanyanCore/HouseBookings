@@ -19,13 +19,13 @@ namespace DataLayer.Repository
 
         public async Task<Address> GetBuildingByAddressIdAsync(int id)
         {
-            var result = await  _context.Addresses.FirstOrDefaultAsync(i => i.Id == id);
+            var result = await _context.Addresses.FirstOrDefaultAsync(i => i.Id == id);
             return result;
         }
 
         public Address GetBuildingByAddressId(int id)
         {
-            var result =  _context.Addresses.FirstOrDefault(i => i.Id == id);
+            var result = _context.Addresses.FirstOrDefault(i => i.Id == id);
             return result;
         }
 
@@ -58,7 +58,7 @@ namespace DataLayer.Repository
 
         public async Task<IEnumerable<Address>> GetBuildingsByHouseTypeAsync(string house, string country)
         {
-            if(house == null)
+            if (house == null)
             {
                 var resultsByHouse = await _context.Addresses
                         .Where(i => i.Country == country)
@@ -74,21 +74,18 @@ namespace DataLayer.Repository
             return results;
         }
 
-        public Task<int> GetBuildingsCountByCityAsync(string city)
+
+
+        public async Task<int> GetBuildingsCountByCityAsync(string city)
         {
-            throw new NotImplementedException();
+            var count = await _context.Addresses
+                .Where(a => a.City == city)
+                .Include(a => a.Building)
+                .Select(a => a.Building)
+                .CountAsync();
+
+            return count;
         }
-
-        //public async Task<int> GetBuildingsCountByCityAsync(string city)
-        //{
-        //    var count = await _context.Addresses
-        //        .Where(a => a.City == city)
-        //        .Include(a => a.Building) 
-        //        .SelectMany(a => a.Building) 
-        //        .CountAsync();
-
-        //    return count;
-        //}
 
     }
 

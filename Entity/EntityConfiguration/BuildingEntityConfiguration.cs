@@ -19,7 +19,7 @@ namespace Entity.EntityConfiguration
             builder.Property(p => p.BuildingFloorQuantity)
                 .IsRequired();
 
-            builder.Property(p => p.BuildingHomeQuantity) 
+            builder.Property(p => p.BuildingHomeQuantity)
                 .IsRequired();
 
             builder.Property(p => p.Images)

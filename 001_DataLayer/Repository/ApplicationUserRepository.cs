@@ -14,7 +14,10 @@ namespace DataLayer.Repository
 
         public async Task<IEnumerable<ApplicationUser>> GetAllApplicationUserInActiveAsync(bool isActive)
         {
-           List<ApplicationUser> applicationUsers = await _context.ApplicationUsers.Where(x => x.IsActive == isActive).ToListAsync();
+           List<ApplicationUser> applicationUsers = await _context.ApplicationUsers
+                .Where(x => x.IsActive == isActive)
+                .ToListAsync();
+
             return applicationUsers;
         }
         public async Task<int> CountApplicationUsersByIsActiveAsync(bool isActive)
