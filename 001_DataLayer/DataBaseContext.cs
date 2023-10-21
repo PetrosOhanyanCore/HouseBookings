@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Entity.Entity;
 using Entity.EntityConfiguration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,9 @@ namespace DataLayer
         public DbSet<Scoring> Scorings { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Options> Options { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         public DbSet<Building> Buildings { get; set; }
 
@@ -34,6 +38,8 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(new AddressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OptionsEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentEntityConfiguartion());
+            modelBuilder.ApplyConfiguration(new ClientEntityConfiguration());
 
         }
     }

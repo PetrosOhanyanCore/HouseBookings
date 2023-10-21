@@ -17,7 +17,7 @@ namespace Entity.EntityConfiguration
             builder.HasKey(k => k.Id);
 
             builder.Property(p => p.Note).HasMaxLength(200);
-            builder
+            builder 
                 .HasOne(b => b.Client)
                 .WithMany(b => b.Bookings)
                 .HasForeignKey(c => c.ClientId);
