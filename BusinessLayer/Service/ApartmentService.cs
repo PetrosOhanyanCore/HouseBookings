@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLayer.IService;
 using DataLayer.IRepository;
+using Entity;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,14 @@ namespace BusinessLayer.Service
         {
             _apartmentRepository = apartmentRepository;
             _mapper = mapper;
+        }
+
+        public void So(ApartmentDTO apartmentDTO)
+        {
+            Apartment apartment = new Apartment
+            {
+                BalconyCount = apartmentDTO.BalconyCount,
+            };
         }
     }
 }
