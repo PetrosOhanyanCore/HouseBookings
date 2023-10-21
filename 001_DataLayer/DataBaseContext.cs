@@ -19,6 +19,7 @@ namespace DataLayer
         }
 
         public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<Building> Buildings { get; set; }
         public DbSet<Scoring> Scorings { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Options> Options { get; set; }
@@ -29,6 +30,7 @@ namespace DataLayer
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ApartmentEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ScoringEntityConfiguration());
             modelBuilder.ApplyConfiguration(new AddressEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OptionsEntityConfiguration());
