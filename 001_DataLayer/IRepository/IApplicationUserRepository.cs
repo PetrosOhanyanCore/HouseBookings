@@ -2,7 +2,7 @@
 
 namespace DataLayer.IRepository
 {
-    internal interface IApplicationUserRepository:IRepositoryBase<ApplicationUser>
+    public interface IApplicationUserRepository:IRepositoryBase<ApplicationUser>
     {
         Task<IEnumerable<ApplicationUser>> GetAllApplicationUserInNameAsync(string firstName);
         Task<IEnumerable<ApplicationUser>> GetAllApplicationUserInLastNameAsync(string lastName);
