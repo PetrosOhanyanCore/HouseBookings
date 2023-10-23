@@ -22,17 +22,16 @@ namespace Entity.EntityConfiguration
             builder.Property(p => p.BuildingHomeQuantity)
                 .IsRequired();
 
-            builder.Property(p => p.Images)
-                .IsRequired();
+            //builder.Property(p => p.BuildingImages)
+            //    .IsRequired();
 
-            builder.HasMany(b => b.Images)
-              .WithOne()
-              .HasForeignKey(i => i.BuildingId)
-              .IsRequired();
+            //builder.HasMany(b => b.BuildingImages)
+            //  .WithOne(b => b.Property)
+            //  .HasForeignKey(i => i.PropertyId);
 
 
             builder.HasMany(b => b.Apartments)
-                .WithOne()
+                .WithOne(b => b.Building)
                 .HasForeignKey(a => a.BuildingId)
                 .IsRequired();
 

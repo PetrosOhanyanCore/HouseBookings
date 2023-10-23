@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Model.Mapper
 {
-    public class OptionsProfile : Profile
+    public class TransaltionProfile : Profile
     {
-
-        public OptionsProfile()
+        public TransaltionProfile()
         {
-            CreateMap<OptionsDTO, Options>();
-
-            CreateMap<Options, OptionsDTO>();
+            CreateMap<TranslationDTO, Translation>();
+            CreateMap<TranslationDTO, TranslationDTO>();
         }
     }
 }
