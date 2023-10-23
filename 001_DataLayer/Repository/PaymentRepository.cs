@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
-    internal class PaymentRepository : RepositoryBase<Payment>, IPaymentRepository
+    public class PaymentRepository : RepositoryBase<Payment>, IPaymentRepository
     {
         public PaymentRepository(DataBaseContext context) : base(context)
         {
