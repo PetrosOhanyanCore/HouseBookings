@@ -27,6 +27,7 @@ namespace DataLayer
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Building> Buildings { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +42,7 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentEntityConfiguartion());
             modelBuilder.ApplyConfiguration(new ClientEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ImageEntityConfiguration());
 
         }
     }

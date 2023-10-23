@@ -23,7 +23,7 @@ namespace Entity.EntityConfiguration
                 .HasForeignKey(k => k.BuildingId);
             builder.HasMany(p => p.Images)
                 .WithOne(p => p.Apartment)
-                .HasForeignKey(k => k.PropertyId);
+                .HasForeignKey(k => k.ApartmentId);
             builder.HasOne(p => p.Translation);
         }
     }
