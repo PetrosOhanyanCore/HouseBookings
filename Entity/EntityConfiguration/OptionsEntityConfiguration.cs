@@ -20,13 +20,13 @@ namespace Entity.EntityConfiguration
             builder.HasOne(p => p.Building)
                 .WithMany(p => p.Options)
                 .HasForeignKey(k => k.BuildingId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
 
 
             builder.HasOne(p => p.Apartment)
                 .WithMany(p => p.Options)
                 .HasForeignKey(k => k.ApartmentId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
