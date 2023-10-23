@@ -10,7 +10,7 @@ namespace Model
     {
         public int Id { get; set; }
         public ApartmentDTO Apartment { get; set; }
-        public BuildingDTO Building { get; set; }
+        //public BuildingDTO Building { get; set; }//
         public string Discription { get; set; }
     }
 }
