@@ -14,7 +14,5 @@ namespace DataLayer.IRepository
         Task<ApplicationUser> GetApplicationUsersInPhoneNumberAsync(string phoneNumber);
         Task<IEnumerable<ApplicationUser>> GetAllApplicationUserInAccessTokenAsync(string accessToken);
         Task<IEnumerable<ApplicationUser>> GetAllApplicationUserByBirthDateAsync(DateTime birthDate);
-
-
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using DataLayer.Repository;
 using BusinessLayer.IService;
 using BusinessLayer.Service;
+using Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 
+builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -78,8 +78,5 @@ namespace DataLayer.Repository
                 .ToListAsync();
             return applicationUsers;
         }
-
-
-
     }
 }
