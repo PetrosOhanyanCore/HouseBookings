@@ -15,12 +15,16 @@ options.UseSqlServer(
 // Add services to the container.
 builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IOptionsRepository, OptionsRepository>();
+
+
+builder.Services.AddTransient<IApartmentService, ApartmentService>();
+builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
 
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
-
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
 
 builder.Services.AddControllers();
