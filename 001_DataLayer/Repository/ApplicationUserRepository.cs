@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repository
 {
-    internal class ApplicationUserRepository : RepositoryBase<ApplicationUser>, IApplicationUserRepository
+    public class ApplicationUserRepository : RepositoryBase<ApplicationUser>, IApplicationUserRepository
     {
         public ApplicationUserRepository(DataBaseContext context)
           : base(context)
@@ -78,8 +78,5 @@ namespace DataLayer.Repository
                 .ToListAsync();
             return applicationUsers;
         }
-
-
-
     }
 }

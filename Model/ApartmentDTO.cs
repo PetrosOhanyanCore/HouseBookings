@@ -18,7 +18,7 @@ namespace Model
         public bool IsAvailable { get; set; }
 
 
-        public BuildingDTO Building { get; set; }
+        //public BuildingDTO Building { get; set; }
         public string Section { get; set; }
         public string Number { get; set; }
 
