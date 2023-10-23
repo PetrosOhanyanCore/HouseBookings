@@ -18,6 +18,8 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IOptionsRepository, OptionsRepository>();
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 //builder.Services.AddTransient<IClientService, ClientService>();
@@ -25,6 +27,8 @@ builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
+/*builder.Services.AddTransient<IBookingService, BookingService>();
+builder.Services.AddTransient<IImageService, ImageService>();*/
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

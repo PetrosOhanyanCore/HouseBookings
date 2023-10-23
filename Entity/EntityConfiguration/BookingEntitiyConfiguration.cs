@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entity.EntityConfiguration
 {
-    internal class BookingEntitiyConfiguration : IEntityTypeConfiguration<Booking>
+    public class BookingEntitiyConfiguration : IEntityTypeConfiguration<Booking>
     {
 
         public void Configure(EntityTypeBuilder<Booking> builder)
@@ -27,11 +27,7 @@ namespace Entity.EntityConfiguration
             builder.Property(b => b.BookingEndDate).IsRequired();
             builder.Property(b => b.CancelationReason).HasConversion<int?>();
             builder.Property(b => b.CancelationReason).IsRequired(false);
-            builder.Property(b => b.CancelationDate).IsRequired(false);
-
-
-
-
+            /*builder.Property(b => b.CancelationDate).IsRequired(false);*/
         }
     }
 }
