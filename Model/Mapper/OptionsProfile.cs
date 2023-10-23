@@ -10,7 +10,8 @@ namespace Model.Mapper
 {
     public class OptionsProfile : Profile
     {
-        OptionsProfile()
+
+        public OptionsProfile()
         {
             CreateMap<OptionsDTO, Options>();
 

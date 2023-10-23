@@ -33,7 +33,7 @@ namespace DataLayer.Repository
             return result;
         }
 
-        public async Task<ICollection<Image>> GetImages(int apartmentId)
+        public  Task<ICollection<Image<Apartment>>> GetImages(int apartmentId)
         {
             //var images = await _context.Images
             //.Where(p => p.ApartmentId == apartmentId)
@@ -45,13 +45,13 @@ namespace DataLayer.Repository
 
         public int ImagesCountByImageId(int id)
         {
-            var count = _context.Apartments
-                            .Include(i => i.Images)
-                            .Where(p => p.Images
-                                .Any(s => s.Id == id))
-                            .SelectMany(s => s.Images)
-                            .Count();
-
+            //var count = _context.Apartments
+            //                .Include(i => i.ApartmentImages)
+            //                .Where(p => p.ApartmentImages
+            //                    .Any(s => s.Id == id))
+            //                .SelectMany(s => s.ApartmentImages)
+            //                .Count();
+            var count = 0;
             return count;
         }
     }

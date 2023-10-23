@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DataLayer.Repository
 {
     public class ImageRepository :
-        RepositoryBase<Image>,
+        RepositoryBase<Image<Type>>,
         IImageRepository
     {
         public ImageRepository(DataBaseContext context)
@@ -20,19 +20,19 @@ namespace DataLayer.Repository
         {
         }
 
-        public IEnumerable<Image> GetAllImages(int buildingId)
+        public IEnumerable<Image<Type>> GetAllImages(int buildingId)
         {
-            var result = _context.Images.Where(p => p.BuildingId == buildingId);
+            var result = _context.Images.Where(p => p.PropertyId == buildingId);
             return result;
         }
 
-        public async Task<Image> GetImageByIdAsync(int id)
+        public async Task<Image<Type>> GetImageByIdAsync(int id)
         {
             var image = await _context.Images.FirstOrDefaultAsync(c => c.Id == id);
             return image;
         }
 
-        public Image GetImageByID(int id)
+        public Image<Type> GetImageByID(int id)
         {
             var image = _context.Images.FirstOrDefault(c => c.Id == id);
             return image;
