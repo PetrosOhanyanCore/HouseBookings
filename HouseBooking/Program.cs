@@ -25,6 +25,7 @@ builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
+builder.Services.AddTransient<IClientService, ClientService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
