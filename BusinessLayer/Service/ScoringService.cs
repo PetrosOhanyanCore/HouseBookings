@@ -36,19 +36,28 @@ namespace BusinessLayer.Service
 
         public IEnumerable<ScoringDTO> FindScorings(Expression<Func<ScoringDTO, bool>> predicate)
         {
-            IEnumerable<ScoringDTO> scoring = _mapper.Map<IEnumerable<Scoring>>(predicate);
-            _scoringRepository.Find(scoring);
+
+            Expression<Func<Entity.Scoring, bool>> entityPredicate
+                = _mapper.Map<Expression<Func<Entity.Scoring, bool>>>(predicate);
+
+            var scorings = _scoringRepository.Find(entityPredicate);
+
+            return _mapper.Map<IEnumerable<ScoringDTO>>(scorings);
+
         }
 
-        public ScoringDTO Get(int id)
+        public ScoringDTO GetScoringById(int id)
         {
-            throw new NotImplementedException();
+            var scoring = _scoringRepository.Get(id);
+            return _mapper.Map<ScoringDTO>(scoring);
         }
 
-        public IEnumerable<ScoringDTO> GetAll()
+        public IEnumerable<ScoringDTO> GetAllScorings()
         {
-            throw new NotImplementedException();
+            var scorings = _scoringRepository.GetAll();
+            return _mapper.Map<IEnumerable<ScoringDTO>>(scorings);
         }
+
 
         public async  Task<IEnumerable<ScoringDTO>> GetAllApartmentsByScoreAsync()
         {
@@ -76,9 +85,12 @@ namespace BusinessLayer.Service
             return _mapper.Map<IEnumerable<ClientDTO>>(result);
         }
 
-        public Task<ScoringDTO> GetAsync(int id)
+        public async Task<ScoringDTO> GetScoringAsync(int id)
         {
-            throw new NotImplementedException();
+        
+                var scoring = await _scoringRepository.GetAsync(id);
+                return _mapper.Map<ScoringDTO>(scoring);
+          
         }
 
         public async Task<IEnumerable<ScoringDTO>> GetClientAllScoringsAsync(int clientId)
@@ -111,24 +123,19 @@ namespace BusinessLayer.Service
             return _mapper.Map<IEnumerable<ScoringDTO>>(result);
         }
 
-        public void Remove(ScoringDTO entity)
+        public void RemoveScoring(ScoringDTO scoringDTO)
         {
-            throw new NotImplementedException();
+
+            Scoring scoring = _mapper.Map<Scoring>(scoringDTO);
+            _scoringRepository.Remove(scoring);
         }
 
-        public void RemoveRange(IEnumerable<ScoringDTO> entities)
+
+        public void UpdateScoring(ScoringDTO scoringDTO)
         {
-            throw new NotImplementedException();
+            Scoring scoring = _mapper.Map<Scoring>(scoringDTO);
+            _scoringRepository.Update(scoring);
         }
 
-        public void Update(ScoringDTO entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateRange(IEnumerable<ScoringDTO> entities)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

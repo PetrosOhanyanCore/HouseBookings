@@ -11,6 +11,7 @@ namespace BusinessLayer.IService
 {
     public interface IScoringService
     {
+
         Task<IEnumerable<ScoringDTO>> GetClientAllScoringsAsync(int clientId);
         Task<IEnumerable<ScoringDTO>> GetClientAllScoringsByRateAsync(int clientId);
         Task<IEnumerable<ScoringDTO>> GetClientAllScoringsByDateAsync(int clientId);

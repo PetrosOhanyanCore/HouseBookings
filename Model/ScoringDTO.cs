@@ -20,5 +20,6 @@ namespace Model
         public ApartmentDTO? Apartment { get; set; }
 
         public BuildingDTO? Building { get; set; }
+
     }
 }
