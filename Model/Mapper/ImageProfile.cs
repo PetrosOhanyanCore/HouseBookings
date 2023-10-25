@@ -12,9 +12,9 @@ namespace Model.Mapper
     {
         ImageProfile()
         {
-            CreateMap<ImageDTO, Image>();
+            CreateMap<ImageDTO, Image<Type>>();
 
-            CreateMap<Image, ImageDTO>();
+            CreateMap<Image<Type>, ImageDTO>();
         }
     }
 }

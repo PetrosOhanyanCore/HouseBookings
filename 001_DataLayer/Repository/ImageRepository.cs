@@ -20,11 +20,11 @@ namespace DataLayer.Repository
         {
         }
 
-        public IEnumerable<Image<Type>> GetAllImages(int buildingId)
-        {
-            var result = _context.Images.Where(p => p.PropertyId == buildingId);
-            return result;
-        }
+        //public IEnumerable<Image<Type>> GetAllImages(int buildingId)
+        //{
+        //    var result = _context.Images.Where(p => p.PropertyId == buildingId).ToList();
+        //    return result;
+        //}
 
         public async Task<Image<Type>> GetImageByIdAsync(int id)
         {
@@ -36,6 +36,11 @@ namespace DataLayer.Repository
         {
             var image = _context.Images.FirstOrDefault(c => c.Id == id);
             return image;
+        }
+
+        public IEnumerable<Image<Type>> GetAllImages(int buildingId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

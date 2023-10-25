@@ -13,6 +13,6 @@ namespace Model
         public string ImageName { get; set; }
 
         public ApartmentDTO ApartmentDTO { get; set; }
-        public BuildingDTO BuildingDTO { get; set; }
+        //public BuildingDTO BuildingDTO { get; set; }
     }
 }

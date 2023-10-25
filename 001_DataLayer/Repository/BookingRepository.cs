@@ -21,7 +21,7 @@ namespace DataLayer.Repository
         }
         public IEnumerable<Booking> GetAllBookings(int buildingId)
         {
-            var result = _context.Bookings.Where(p => p.BuildingId == buildingId);
+            var result = _context.Bookings.Where(p => p.Apartment.BuildingId == buildingId);
             return result;
         }
         public async Task<Booking> GetBookingByIdAsync(int id)
@@ -33,6 +33,26 @@ namespace DataLayer.Repository
         {
             var booking = _context.Bookings.FirstOrDefault(c => c.Id == id);
             return booking;
+        }
+
+        public Task<Booking> GetBuildingByAddressIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Booking GetBuildingByAddressId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Booking>> GetBuildingsByCountryAsync(string Apartment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Booking>> GetBuildingsByCityAsync(string Description)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace BusinessLayer.Service
         {
             try
             {
-                Image image = _mapper.Map<Image>(imageDTO);
+                Image<Type> image = _mapper.Map<Image<Type>>(imageDTO);
                 _imgRepository.Add(image);
 
             }
@@ -43,7 +43,7 @@ namespace BusinessLayer.Service
         {
             try
             {
-                Image image = _mapper.Map<Image>(imageDTO);
+                Image<Type> image = _mapper.Map<Image<Type>>(imageDTO);
                 _imgRepository.Update(image);
 
             }

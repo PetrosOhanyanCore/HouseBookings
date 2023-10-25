@@ -27,7 +27,7 @@ namespace DataLayer
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Building> Buildings { get; set; }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<Image<Type>> Images { get; set; }
         public DbSet<Booking> Bookings { get; set; }
 
 
