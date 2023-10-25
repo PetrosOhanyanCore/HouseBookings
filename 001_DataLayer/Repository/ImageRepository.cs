@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 namespace DataLayer.Repository
 {
     public class ImageRepository :
-        RepositoryBase<Image<Type>>,
-        IImageRepository
+        RepositoryBase<ApartmentImage>,
+        IApartmentImageRepository
     {
         public ImageRepository(DataBaseContext context)
             : base(context)
@@ -26,19 +26,19 @@ namespace DataLayer.Repository
         //    return result;
         //}
 
-        public async Task<Image<Type>> GetImageByIdAsync(int id)
+        public async Task<ApartmentImage> GetImageByIdAsync(int id)
         {
             var image = await _context.Images.FirstOrDefaultAsync(c => c.Id == id);
             return image;
         }
 
-        public Image<Type> GetImageByID(int id)
+        public ApartmentImage GetImageByID(int id)
         {
             var image = _context.Images.FirstOrDefault(c => c.Id == id);
             return image;
         }
 
-        public IEnumerable<Image<Type>> GetAllImages(int buildingId)
+        public IEnumerable<ApartmentImage> GetAllImages(int buildingId)
         {
             throw new NotImplementedException();
         }

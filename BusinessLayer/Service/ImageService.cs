@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLayer.IService;
 using DataLayer.IRepository;
+using DataLayer.Repository;
 using Entity;
 using Model;
 using System;
@@ -13,12 +14,12 @@ namespace BusinessLayer.Service
 {
     public class ImageService : IImageService
     {
-        private readonly IImageRepository _imgRepository;
+        private readonly IApartmentImageRepository _imgRepository;
         private readonly IMapper _mapper;
 
 
         public ImageService(
-            IImageRepository imageRepository,
+            IApartmentImageRepository imageRepository,
             IMapper mapper)
         {
             _imgRepository = imageRepository;
@@ -29,7 +30,7 @@ namespace BusinessLayer.Service
         {
             try
             {
-                Image<Type> image = _mapper.Map<Image<Type>>(imageDTO);
+                ApartmentImage image = _mapper.Map<ApartmentImage>(imageDTO);
                 _imgRepository.Add(image);
 
             }
@@ -43,7 +44,7 @@ namespace BusinessLayer.Service
         {
             try
             {
-                Image<Type> image = _mapper.Map<Image<Type>>(imageDTO);
+                ApartmentImage image = _mapper.Map<ApartmentImage>(imageDTO);
                 _imgRepository.Update(image);
 
             }

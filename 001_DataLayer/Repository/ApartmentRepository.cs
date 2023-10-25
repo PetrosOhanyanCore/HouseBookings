@@ -33,7 +33,7 @@ namespace DataLayer.Repository
             return result;
         }
 
-        public  Task<ICollection<Image<Apartment>>> GetImages(int apartmentId)
+        public  Task<ICollection<ApartmentImage>> GetImages(int apartmentId)
         {
             //var images = await _context.Images
             //.Where(p => p.ApartmentId == apartmentId)

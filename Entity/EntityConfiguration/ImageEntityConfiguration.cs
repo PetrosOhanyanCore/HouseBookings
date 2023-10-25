@@ -9,14 +9,14 @@ using System.Reflection.Emit;
 
 namespace Entity.EntityConfiguration
 {
-    public class ImageEntityConfiguration : IEntityTypeConfiguration<Image<Type>>
+    public class ImageEntityConfiguration : IEntityTypeConfiguration<ApartmentImage>
     {
-        public void Configure(EntityTypeBuilder<Image<Type>> builder)
+        public void Configure(EntityTypeBuilder<ApartmentImage> builder)
         {
             builder.ToTable("Image");
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.ImageName).HasMaxLength(50);
-            builder.Ignore(c => c.Property);
+            builder.HasAlternateKey(c => c.ApartmentId);
+            builder.Property(c => c.ImageName).HasMaxLength(50);            
         }
     }
 }

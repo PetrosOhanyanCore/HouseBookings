@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
-    public class buildingRepository
+    public class BuildingRepository
         : RepositoryBase<Building>,
         IBuildingRepository
     {
-        public buildingRepository(DataBaseContext context)
+        public BuildingRepository(DataBaseContext context)
             : base(context)
         {
         }

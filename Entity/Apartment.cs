@@ -39,7 +39,7 @@ namespace Entity
         public bool IsKitchenAttached { get; set; }
         public int BalconyCount { get; set; }
 
-        //public virtual ICollection<Image<Apartment>> ApartmentImages { get; set; }
+        public virtual ICollection<ApartmentImage> ApartmentImages { get; set; }
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<Options> Options { get; set; }
         public ICollection<Scoring> Scorings { get; set; }

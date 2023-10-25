@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Image<T> where T : class
+    public class ApartmentImage
     {
         public int Id { get; set; }
         public string ImageName { get; set; }
 
-        public T Property { get; set; }
-        public int PropertyId { get; set; }
+        public Apartment Apartment { get; set; }
+        public int ApartmentId { get; set; }
     }
 }

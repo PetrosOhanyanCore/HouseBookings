@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.IRepository
 {
-    public interface IImageRepository : IRepositoryBase<Image<Type>>
+    public interface IApartmentImageRepository : IRepositoryBase<ApartmentImage>
     {
-        Image<Type> GetImageByID(int id);
-        Task<Image<Type>> GetImageByIdAsync(int id);
+        ApartmentImage GetImageByID(int id);
+        Task<ApartmentImage> GetImageByIdAsync(int id);
 
-        IEnumerable<Image<Type>> GetAllImages(int buildingId);
+        IEnumerable<ApartmentImage> GetAllImages(int buildingId);
     }
 }
