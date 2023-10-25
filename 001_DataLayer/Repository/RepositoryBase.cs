@@ -35,6 +35,7 @@ namespace DataLayer.Repository
         public void Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
+            _context.SaveChanges();
         }
 
         /// <summary>  
@@ -44,6 +45,7 @@ namespace DataLayer.Repository
         public void AddRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().AddRange(entities);
+            _context.SaveChanges();
         }
 
         /// <summary>  
@@ -111,6 +113,7 @@ namespace DataLayer.Repository
         public void Remove(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
+            _context.SaveChanges();
         }
 
         /// <summary>  
@@ -120,6 +123,7 @@ namespace DataLayer.Repository
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().RemoveRange(entities);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -129,6 +133,7 @@ namespace DataLayer.Repository
         public void Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -138,6 +143,7 @@ namespace DataLayer.Repository
         public void UpdateRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().UpdateRange(entities);
+            _context.SaveChanges();
         }
         #endregion
     }
