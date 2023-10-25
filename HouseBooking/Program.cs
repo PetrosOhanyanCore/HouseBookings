@@ -27,6 +27,7 @@ builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
+builder.Services.AddTransient<IClientService, ClientService>();
 
 builder.Services.AddAutoMapperService();
 builder.Services.AddIdentityServer();
