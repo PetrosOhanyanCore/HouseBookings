@@ -33,15 +33,15 @@ namespace DataLayer.Repository
             return result;
         }
 
-        public /*async*/ Task<ICollection<Image<Building>>> GetImages(int buildingId)
-        {
-            //var images = await _context.Images
-            //.Where(p => p.buildindId == BuildingId)
-            //.ToListAsync();
+        //public /*async*/ Task<ICollection<Image<Building>>> GetImages(int buildingId)
+        //{
+        //    //var images = await _context.Images
+        //    //.Where(p => p.buildindId == BuildingId)
+        //    //.ToListAsync();
 
-            //return images;
-            return null;
-        }
+        //    //return images;
+        //    return null;
+        //}
 
         public int ImagesCountByImageId(int id)
         {

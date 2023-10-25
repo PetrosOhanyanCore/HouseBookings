@@ -11,8 +11,6 @@ namespace Entity
         public int Id { get ; set; }
         public int ApartmentId { get; set; }
         public virtual Apartment Apartment { get; set; }
-        public int BuildingId { get; set; }
-        public virtual Building Building { get; set; }
         public string Discription { get; set; }
     }
 }

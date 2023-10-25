@@ -16,7 +16,7 @@ namespace DataLayer.IRepository
 
         int ImagesCountByImageId(int id);
 
-        Task<ICollection<ApartmentImage>> GetImages(int buildingid);
+        //Task<ICollection<ApartmentImage>> GetImages(int buildingid);
 
     }
 

@@ -26,7 +26,6 @@ namespace Entity
 
         //public virtual ICollection<Image<Building>> BuildingImages { get; set; }
         public virtual IEnumerable<Apartment> Apartments { get; set; }
-        public virtual ICollection<Options> Options { get; set; }
         public ICollection<Scoring> Scorings { get; set; }
 
     }

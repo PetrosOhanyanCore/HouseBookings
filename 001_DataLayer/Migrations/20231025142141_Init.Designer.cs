@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20231023153355_botn")]
-    partial class botn
+    [Migration("20231025142141_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -148,6 +148,33 @@ namespace DataLayer.Migrations
                     b.ToTable("Apartment", (string)null);
                 });
 
+            modelBuilder.Entity("Entity.ApartmentImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ApartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ApartmentId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("ApartmentId");
+
+                    b.HasIndex("ApartmentId1");
+
+                    b.ToTable("Image", (string)null);
+                });
+
             modelBuilder.Entity("Entity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -273,7 +300,7 @@ namespace DataLayer.Migrations
 
                     b.HasIndex("DescriptionId");
 
-                    b.ToTable("Booking");
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("Entity.Building", b =>
@@ -371,26 +398,6 @@ namespace DataLayer.Migrations
                     b.ToTable("Client", (string)null);
                 });
 
-            modelBuilder.Entity("Entity.Image<System.Type>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ImageName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Image", (string)null);
-                });
-
             modelBuilder.Entity("Entity.Options", b =>
                 {
                     b.Property<int>("Id")
@@ -402,9 +409,6 @@ namespace DataLayer.Migrations
                     b.Property<int>("ApartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BuildingId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Discription")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -412,8 +416,6 @@ namespace DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApartmentId");
-
-                    b.HasIndex("BuildingId");
 
                     b.ToTable("Options", (string)null);
                 });
@@ -695,6 +697,17 @@ namespace DataLayer.Migrations
                     b.Navigation("Translation");
                 });
 
+            modelBuilder.Entity("Entity.ApartmentImage", b =>
+                {
+                    b.HasOne("Entity.Apartment", "Apartment")
+                        .WithMany("ApartmentImages")
+                        .HasForeignKey("ApartmentId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Apartment");
+                });
+
             modelBuilder.Entity("Entity.ApplicationUser", b =>
                 {
                     b.HasOne("Entity.Client", "Client")
@@ -766,18 +779,10 @@ namespace DataLayer.Migrations
                     b.HasOne("Entity.Apartment", "Apartment")
                         .WithMany("Options")
                         .HasForeignKey("ApartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Entity.Building", "Building")
-                        .WithMany("Options")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Apartment");
-
-                    b.Navigation("Building");
                 });
 
             modelBuilder.Entity("Entity.Payment", b =>
@@ -880,6 +885,8 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("Entity.Apartment", b =>
                 {
+                    b.Navigation("ApartmentImages");
+
                     b.Navigation("Bookings");
 
                     b.Navigation("Options");
@@ -895,8 +902,6 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("Entity.Building", b =>
                 {
                     b.Navigation("Apartments");
-
-                    b.Navigation("Options");
 
                     b.Navigation("Scorings");
                 });

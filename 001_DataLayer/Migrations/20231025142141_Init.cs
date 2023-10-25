@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,11 +15,10 @@ namespace DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    District = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Building = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    District = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     House = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -48,66 +47,13 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    En = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Arm = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    En = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
+                    Rus = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
+                    Arm = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Translation", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Building",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LocationId = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    Template = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BuildingFloorQuantity = table.Column<int>(type: "int", nullable: false),
-                    BuildingHomeQuantity = table.Column<int>(type: "int", nullable: false),
-                    HasSecurity = table.Column<bool>(type: "bit", nullable: false),
-                    HasParking = table.Column<bool>(type: "bit", nullable: false),
-                    HasElevator = table.Column<bool>(type: "bit", nullable: false),
-                    ApartmentCount = table.Column<int>(type: "int", nullable: true),
-                    ApartmentSquareMin = table.Column<double>(type: "float", nullable: true),
-                    ApartmentSquareMax = table.Column<double>(type: "float", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Building", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Building_Address_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Client",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LivingAddressId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Client", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Client_Address_LivingAddressId",
-                        column: x => x.LivingAddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -132,12 +78,76 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Building",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LocationId = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Template = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BuildingFloorQuantity = table.Column<int>(type: "int", nullable: false),
+                    BuildingHomeQuantity = table.Column<int>(type: "int", nullable: false),
+                    HasSecurity = table.Column<bool>(type: "bit", nullable: false),
+                    HasParking = table.Column<bool>(type: "bit", nullable: false),
+                    HasElevator = table.Column<bool>(type: "bit", nullable: false),
+                    ApartmentSquareMin = table.Column<double>(type: "float", nullable: true),
+                    ApartmentSquareMax = table.Column<double>(type: "float", nullable: true),
+                    TranslationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Building", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Building_Address_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Building_Translation_TranslationId",
+                        column: x => x.TranslationId,
+                        principalTable: "Translation",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MiddleName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TranslationId = table.Column<int>(type: "int", nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LivingAddressId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Client_Address_LivingAddressId",
+                        column: x => x.LivingAddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Client_Translation_TranslationId",
+                        column: x => x.TranslationId,
+                        principalTable: "Translation",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Apartment",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DescriptionId = table.Column<int>(type: "int", nullable: true),
+                    TranslationId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RoomsCount = table.Column<int>(type: "int", nullable: false),
                     Bathrooms = table.Column<int>(type: "int", nullable: false),
@@ -181,10 +191,11 @@ namespace DataLayer.Migrations
                         principalTable: "Client",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Apartment_Translation_DescriptionId",
-                        column: x => x.DescriptionId,
+                        name: "FK_Apartment_Translation_TranslationId",
+                        column: x => x.TranslationId,
                         principalTable: "Translation",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -192,8 +203,8 @@ namespace DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     DeactivationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -225,12 +236,13 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Booking",
+                name: "Bookings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ApartmentId = table.Column<int>(type: "int", nullable: false),
+                    DescriptionId = table.Column<int>(type: "int", nullable: true),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BookingEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -239,19 +251,24 @@ namespace DataLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Booking", x => x.Id);
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Apartment_ApartmentId",
+                        name: "FK_Bookings_Apartment_ApartmentId",
                         column: x => x.ApartmentId,
                         principalTable: "Apartment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Booking_Client_ClientId",
+                        name: "FK_Bookings_Client_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Client",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Bookings_Translation_DescriptionId",
+                        column: x => x.DescriptionId,
+                        principalTable: "Translation",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -260,24 +277,81 @@ namespace DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ApartmentId = table.Column<int>(type: "int", nullable: false),
-                    BuildingId = table.Column<int>(type: "int", nullable: true)
+                    ImageName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ApartmentId1 = table.Column<int>(type: "int", nullable: false),
+                    ApartmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Image", x => x.Id);
+                    table.UniqueConstraint("AK_Image_ApartmentId", x => x.ApartmentId);
                     table.ForeignKey(
-                        name: "FK_Image_Apartment_ApartmentId",
-                        column: x => x.ApartmentId,
+                        name: "FK_Image_Apartment_ApartmentId1",
+                        column: x => x.ApartmentId1,
                         principalTable: "Apartment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Options",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApartmentId = table.Column<int>(type: "int", nullable: false),
+                    Discription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Options", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Image_Building_BuildingId",
+                        name: "FK_Options_Apartment_ApartmentId",
+                        column: x => x.ApartmentId,
+                        principalTable: "Apartment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Scoring",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Rate = table.Column<int>(type: "int", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(350)", maxLength: 350, nullable: true),
+                    TranslationId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    ApartmentId = table.Column<int>(type: "int", nullable: true),
+                    BuildingId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Scoring", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Scoring_Apartment_ApartmentId",
+                        column: x => x.ApartmentId,
+                        principalTable: "Apartment",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Scoring_Building_BuildingId",
                         column: x => x.BuildingId,
                         principalTable: "Building",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Scoring_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Scoring_Translation_TranslationId",
+                        column: x => x.TranslationId,
+                        principalTable: "Translation",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -365,6 +439,33 @@ namespace DataLayer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    CurrencyCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CardNumber = table.Column<int>(type: "int", nullable: false),
+                    CardExpireMonth = table.Column<int>(type: "int", nullable: false),
+                    CardExpireYear = table.Column<int>(type: "int", nullable: false),
+                    CardOwner = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CVV = table.Column<short>(type: "smallint", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BookingId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payment_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Apartment_BuildingId",
                 table: "Apartment",
@@ -376,14 +477,14 @@ namespace DataLayer.Migrations
                 column: "ClientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Apartment_DescriptionId",
-                table: "Apartment",
-                column: "DescriptionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Apartment_LocationId",
                 table: "Apartment",
                 column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Apartment_TranslationId",
+                table: "Apartment",
+                column: "TranslationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -430,19 +531,30 @@ namespace DataLayer.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_ApartmentId",
-                table: "Booking",
+                name: "IX_Bookings_ApartmentId",
+                table: "Bookings",
                 column: "ApartmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_ClientId",
-                table: "Booking",
+                name: "IX_Bookings_ClientId",
+                table: "Bookings",
                 column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_DescriptionId",
+                table: "Bookings",
+                column: "DescriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Building_LocationId",
                 table: "Building",
-                column: "LocationId");
+                column: "LocationId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Building_TranslationId",
+                table: "Building",
+                column: "TranslationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Client_LivingAddressId",
@@ -450,14 +562,45 @@ namespace DataLayer.Migrations
                 column: "LivingAddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_ApartmentId",
+                name: "IX_Client_TranslationId",
+                table: "Client",
+                column: "TranslationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Image_ApartmentId1",
                 table: "Image",
+                column: "ApartmentId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Options_ApartmentId",
+                table: "Options",
                 column: "ApartmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_BuildingId",
-                table: "Image",
+                name: "IX_Payment_BookingId",
+                table: "Payment",
+                column: "BookingId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scoring_ApartmentId",
+                table: "Scoring",
+                column: "ApartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scoring_BuildingId",
+                table: "Scoring",
                 column: "BuildingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scoring_ClientId",
+                table: "Scoring",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Scoring_TranslationId",
+                table: "Scoring",
+                column: "TranslationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -478,16 +621,25 @@ namespace DataLayer.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Booking");
+                name: "Image");
 
             migrationBuilder.DropTable(
-                name: "Image");
+                name: "Options");
+
+            migrationBuilder.DropTable(
+                name: "Payment");
+
+            migrationBuilder.DropTable(
+                name: "Scoring");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Bookings");
 
             migrationBuilder.DropTable(
                 name: "Apartment");
@@ -499,10 +651,10 @@ namespace DataLayer.Migrations
                 name: "Client");
 
             migrationBuilder.DropTable(
-                name: "Translation");
+                name: "Address");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Translation");
         }
     }
 }

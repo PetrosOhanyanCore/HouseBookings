@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLayer.IService;
 using DataLayer.IRepository;
-using DataLayer.Migrations;
 using Entity;
 using Model;
 using System;
