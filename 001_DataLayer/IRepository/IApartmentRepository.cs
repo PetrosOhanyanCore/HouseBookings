@@ -35,6 +35,6 @@ namespace DataLayer.IRepository
         /// </summary>
         /// <param name="apartmentId"></param>
         /// <returns></returns>
-        Task<ICollection<Image>> GetImages(int apartmentId);
+        Task<ICollection<Image<Apartment>>> GetImages(int apartmentId);
     }
 }

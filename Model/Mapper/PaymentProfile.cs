@@ -4,7 +4,7 @@ using Entity;
 
 namespace Model.Mapper
 {
-    internal class PaymentProfile : Profile
+    public class PaymentProfile : Profile
     {
         public PaymentProfile() 
         {

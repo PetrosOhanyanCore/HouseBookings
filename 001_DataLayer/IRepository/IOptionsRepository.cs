@@ -1,3 +1,4 @@
+using DataLayer.IRepository;
 using Entity;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,8 @@ namespace DataLayer.IRepository
     public interface IOptionsRepository : IRepositoryBase<Options>
     {
 
-       public  Task<Options> GetOptionByIdAsync(int id);
-        public Task<Apartment> GetApartmentByIdAsync(int id);
-        public Task<Building> GetBuildingByIdAsync(int id);
-
-
+        Task<Options> GetOptionByIdAsync(int id);
+        Task<Apartment> GetApartmentByIdAsync(int id);
+        Task<Building> GetBuildingByIdAsync(int id);
     }
-
-
-
-
 }

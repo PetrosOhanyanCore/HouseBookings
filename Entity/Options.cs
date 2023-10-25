@@ -8,12 +8,11 @@ namespace Entity
 {
     public class Options
     {
-
         public int Id { get ; set; }
         public int ApartmentId { get; set; }
-        public Apartment Apartment { get; set; }
+        public virtual Apartment Apartment { get; set; }
         public int BuildingId { get; set; }
-        public Building Building { get; set; }
+        public virtual Building Building { get; set; }
         public string Discription { get; set; }
     }
 }
