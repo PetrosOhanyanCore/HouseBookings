@@ -9,9 +9,11 @@ namespace DataLayer.IRepository
 {
     public interface IClientRepository : IRepositoryBase<Client>
     {
+        // this methods is in IRepositoryBase
+        /*
         Client GetCLientByID(int id);
         Task<Client> GetClientByIdAsync(int id);
         IEnumerable<Client> GetAllClients();
-
+        */
     }
 }

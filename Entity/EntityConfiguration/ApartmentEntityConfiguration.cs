@@ -21,9 +21,9 @@ namespace Entity.EntityConfiguration
             builder.HasOne(p => p.Building)
                 .WithMany(p => p.Apartments)
                 .HasForeignKey(k => k.BuildingId);
-            builder.HasMany(p => p.Images)
-                .WithOne(p => p.Apartment)
-                .HasForeignKey(k => k.ApartmentId);
+            //builder.HasMany(p => p.ApartmentImages)
+            //    .WithOne(p => p.Property)
+            //    .HasForeignKey(k => k.PropertyId);
             builder.HasOne(p => p.Translation);
         }
     }

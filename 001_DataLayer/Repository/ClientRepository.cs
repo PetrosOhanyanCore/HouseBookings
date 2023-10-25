@@ -15,7 +15,7 @@ namespace DataLayer.Repository
         {
             
         }
-
+        /*
         public IEnumerable<Client> GetAllClients()
         {
             var clients = _context.Clients.ToList();
@@ -33,5 +33,6 @@ namespace DataLayer.Repository
             var client = await _context.Clients.FirstOrDefaultAsync(c => c.Id == id);
             return client;
         }
+        */
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Entity
 {
     public class Apartment
     {
+        [Key]
         public int Id { get; set; }
         public int TranslationId { get; set; }
         public Translation Translation { get; set; }
@@ -37,7 +39,7 @@ namespace Entity
         public bool IsKitchenAttached { get; set; }
         public int BalconyCount { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        //public virtual ICollection<Image<Apartment>> ApartmentImages { get; set; }
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<Options> Options { get; set; }
         public ICollection<Scoring> Scorings { get; set; }
