@@ -26,9 +26,9 @@ namespace Entity.EntityConfiguration
                 .IsRequired();
 
             builder.HasMany(b => b.Images)
-                .WithOne()
-                .HasForeignKey(i => i.PropertyId)
-                .IsRequired();
+              .WithOne()
+              .HasForeignKey(i => i.BuildingId)
+              .IsRequired();
 
 
             builder.HasMany(b => b.Apartments)
