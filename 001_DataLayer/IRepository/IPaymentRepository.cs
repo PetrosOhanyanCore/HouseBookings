@@ -13,5 +13,11 @@ namespace DataLayer.IRepository
         Task<Payment> GetPaymentByBuildingIDAsync(int buildingId);
         Task<Payment> GetPaymentByDateTimeAsync(DateTime dateTime);
         Task<Payment> GetPaymentByAmountAsync(decimal amount);
+        Task AddAsync(Payment payment);
+        Task<IEnumerable<Payment>> GetAllAsync();
+        Task RemoveAsync(Payment payment);
+        Task UpdateAsync(Payment payment);
+
+
     }
 }

@@ -38,5 +38,28 @@ namespace DataLayer.Repository
             var result = await _context.Payments.FirstOrDefaultAsync(j => j.Amount == amount);
             return result;
         }
+
+        public async Task AddAsync(Payment payment)
+        {
+            await _context.Payments.AddAsync(payment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Payment>> GetAllAsync()
+        {
+            return await _context.Payments.ToListAsync();
+        }
+
+        public async Task RemoveAsync(Payment payment)
+        {
+            _context.Payments.Remove(payment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Payment payment)
+        {
+            _context.Payments.Update(payment);
+            await _context.SaveChangesAsync(true);
+        }
     }
 }

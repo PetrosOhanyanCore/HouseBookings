@@ -10,11 +10,10 @@ namespace BusinessLayer.IService
         Task<PaymentDTO> GetPaymentByBuildingIDAsync(int buildingId);
         Task<PaymentDTO> GetPaymentByDateTimeAsync(DateTime dateTime);
         Task<PaymentDTO> GetPaymentByAmountAsync(decimal amount);
-        IEnumerable<PaymentDTO> GetAllPayments();
-        IEnumerable<PaymentDTO> FindPayments(Expression<Func<Payment, bool>> predicate);
-        PaymentDTO GetPaymentById(int id);
-        void AddPayment(PaymentDTO paymentDTO);
-        void UpdatePayment(PaymentDTO paymentDTO);
-        void RemovePayment(int id);
+        Task<IEnumerable<PaymentDTO>> GetAllPaymentsAsync();
+     
+        Task AddPaymentAsync(PaymentDTO paymentDTO);
+        Task UpdatePaymentAsync(PaymentDTO paymentDTO);
+        Task RemovePaymentAsync(int id);
     }
 }
