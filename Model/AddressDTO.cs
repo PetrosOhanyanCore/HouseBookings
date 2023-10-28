@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Mapper
+namespace Model
 {
     public class AddressDTO
     {
@@ -14,8 +14,8 @@ namespace Model.Mapper
         public string City { get; set; }
         public string District { get; set; }
         public string Street { get; set; }
-        public Building Building { get; set; }
-        public string? House { get; set; }
+        public BuildingDTO Building { get; set; }
+        public string House { get; set; }
     }
 }
 

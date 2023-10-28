@@ -33,25 +33,21 @@ namespace DataLayer.Repository
             return result;
         }
 
-        //public /*async*/ Task<ICollection<Image<Building>>> GetImages(int buildingId)
-        //{
-        //    //var images = await _context.Images
-        //    //.Where(p => p.buildindId == BuildingId)
-        //    //.ToListAsync();
-
-        //    //return images;
-        //    return null;
-        //}
-
-        public int ImagesCountByImageId(int id)
+        public async Task<ICollection<BuildingImage>> GetImages(int buildingId)
         {
-            //var count = _context.Buildings
-            //                .Include(i => i.BuildingImages)
-            //                .Where(p => p.BuildingImages
-            //                    .Any(s => s.Id == id))
-            //                .SelectMany(s => s.BuildingImages)
-            //                .Count();
-            var count = 0;
+            var images = await _context.BuildingImages
+                                      .Where(x => x.BuildingId == buildingId)
+                                      .ToListAsync();
+
+            return images;
+        }
+
+
+        public int ImagesCountByBuildingId(int buildingId)
+        {
+            var count = _context.BuildingImages
+                              .Count(x => x.BuildingId == buildingId);
+
             return count;
         }
     }

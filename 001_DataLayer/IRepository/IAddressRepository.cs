@@ -7,7 +7,7 @@ using Entity;
 
 namespace DataLayer.IRepository
 {
-    public interface IAddressRepository
+    public interface IAddressRepository : IRepositoryBase<Address>
     {
 
         Task<Address> GetBuildingByAddressIdAsync(int id);
