@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
-    internal class TranslationService : ITranslationService
+    public class TranslationService : ITranslationService
     {
         private readonly ITranslationRepository _repository;
         private readonly IMapper _mapper;
-        public TranslationService(ITranslationRepository repository,IMapper mapper)
+        public TranslationService(ITranslationRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -23,7 +23,7 @@ namespace BusinessLayer.Service
 
         public int SwithLanguage(string language)
         {
-           return _repository.SwitchLanguage(language);
+            return _repository.SwitchLanguage(language);
         }
     }
 }

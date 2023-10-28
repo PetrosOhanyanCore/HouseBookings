@@ -8,9 +8,9 @@ using Entity;
 
 namespace BusinessLayer.IService
 {
-    internal interface IBuildingService
+    public interface IBuildingService
     {
-        Task <BuildingDTO> GetBuildingById(int buildingId);
+        Task<BuildingDTO> GetBuildingById(int buildingId);
         IEnumerable<BuildingDTO> GetAllBuildings(int locationId);
         int ImagesCountByImageId(int id);
     }

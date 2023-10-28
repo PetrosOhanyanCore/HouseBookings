@@ -42,11 +42,18 @@ namespace DataLayer.Repository
             return images;
         }
 
-
         public int ImagesCountByBuildingId(int buildingId)
         {
             var count = _context.BuildingImages
                               .Count(x => x.BuildingId == buildingId);
+
+            return count;
+        }
+
+        public int ImagesCountByImageId(int id)
+        {
+            var count = _context.BuildingImages
+                .Count(x => x.BuildingId == id);
 
             return count;
         }

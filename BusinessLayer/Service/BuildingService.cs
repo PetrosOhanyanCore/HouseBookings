@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
-    internal class BuildingService : IBuildingService
-
+    public class BuildingService : IBuildingService
     {
 
         private readonly IBuildingRepository _buildingRepositroy;
@@ -24,9 +23,9 @@ namespace BusinessLayer.Service
             _mapper = maper;
         }
 
-        public  IEnumerable<BuildingDTO> GetAllBuildings(int locationId)
+        public IEnumerable<BuildingDTO> GetAllBuildings(int locationId)
         {
-           var buildings = (List<BuildingDTO>)_buildingRepositroy.GetAllBuildings(locationId);
+            var buildings = (List<BuildingDTO>)_buildingRepositroy.GetAllBuildings(locationId);
 
             return buildings;
 
@@ -34,7 +33,7 @@ namespace BusinessLayer.Service
 
         public async Task<BuildingDTO> GetBuildingById(int buildingId)
         {
-            var result =  await _buildingRepositroy.GetBuildingByIdAsync(buildingId);
+            var result = await _buildingRepositroy.GetBuildingByIdAsync(buildingId);
             return _mapper.Map<Building, BuildingDTO>(result);
         }
 
