@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.IService;
+using DataLayer.IRepository;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,19 +10,26 @@ namespace HouseBooking.Controllers
     [ApiController]
     public class AddressController : ControllerBase
     {
-        // GET: api/<AddressController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IAddressService _addressService;
+        public AddressController(IAddressService addressService)
         {
-            return new string[] { "value1", "value2" };
+            _addressService = addressService;
         }
 
-        // GET api/<AddressController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        [HttpGet]
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var address = _addressService.GetBuildingByAddressId(id);
+            return Ok(address);
         }
+
+        //// GET api/<AddressController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/<AddressController>
         [HttpPost]

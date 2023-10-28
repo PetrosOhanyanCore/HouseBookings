@@ -25,7 +25,9 @@ namespace DataLayer.Repository
 
         public Address GetBuildingByAddressId(int id)
         {
-            var result = _context.Addresses.FirstOrDefault(i => i.Id == id);
+            var result = _context.Addresses
+                .Include(c=>c.Building)
+                .FirstOrDefault(i => i.Building.Id == id);
             return result;
         }
 
