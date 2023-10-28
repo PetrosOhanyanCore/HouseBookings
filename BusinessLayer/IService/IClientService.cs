@@ -1,25 +1,19 @@
 ﻿
 using Model;
-using System.Linq.Expressions;
 
 namespace BusinessLayer.IService
 {
     public interface IClientService
     {
-        ClientDTO GetClient(int id);
+        Task<ClientDTO> GetClientAsync(int id);
 
-        Task<ClientDTO> GetAsyncClient(int id);
+        Task<IEnumerable<ClientDTO>> GetAllClientAsync();
+         
+        Task AddClientAsync(ClientDTO clientDTO);
 
-        IEnumerable<ClientDTO> GetAllClient();
-  
-        IEnumerable<ClientDTO> FindClient(Expression<Func<ClientDTO, bool>> predicate);
+        Task RemoveClientAsync(ClientDTO clientDTO);
 
-        
-        void AddClient(ClientDTO clientDTO);
-
-        void RemoveClient(ClientDTO clientDTO);
-
-        void UpdateClient(ClientDTO clientDTO);
+        Task UpdateClientAsync(ClientDTO clientDTO);
 
 
     }

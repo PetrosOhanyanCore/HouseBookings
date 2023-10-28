@@ -18,50 +18,38 @@ namespace BusinessLayer.Service
         {
             this._clientRepository = clientRepository;
             this._mapper = maper;
-            
+
         }
 
-        public void AddClient(ClientDTO clientDTO)
+        public async Task AddClientAsync(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            _clientRepository.Add(client);
+            await _clientRepository.AddAsync(client);
         }
-        public IEnumerable<ClientDTO> FindClient(Expression<Func<ClientDTO, bool>> predicate)
-        {
-            Expression<Func<Entity.Client, bool>> entityPredicate = _mapper.Map<Expression<Func<Entity.Client, bool>>>(predicate);
 
-            var clients = _clientRepository.Find(entityPredicate);
+        public async Task<IEnumerable<ClientDTO>> GetAllClientAsync()
+        {
+            var clients = await _clientRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<ClientDTO>>(clients);
         }
-
 
         
-        public IEnumerable<ClientDTO> GetAllClient()
-        {
-           var clients = _clientRepository.GetAll();
-            return _mapper.Map<IEnumerable<ClientDTO>>(clients);
-        }
 
-        public async Task<ClientDTO> GetAsyncClient(int id)
+        public async Task<ClientDTO> GetClientAsync(int id)
         {
             var client = await _clientRepository.GetAsync(id);
-            return _mapper.Map<ClientDTO>(client);
+            return _mapper.Map<ClientDTO>(client); throw new NotImplementedException();
         }
 
-        public ClientDTO GetClient(int id)
+        public async Task RemoveClientAsync(ClientDTO clientDTO)
         {
-            var client = _clientRepository.Get(id);
-            return _mapper.Map<ClientDTO>(client);
-        }
-
-        public void RemoveClient(ClientDTO clientDTO)
-        {
-            var  client = _mapper.Map<Client>(clientDTO);
-            var existingClient = _clientRepository.Get(client.Id);
+            var client = _mapper.Map<Client>(clientDTO);
+            var existingClient = await _clientRepository.GetAsync(client.Id);
 
             if (existingClient != null)
             {
-                _clientRepository.Remove(client);
+                //_clientRepository.Remove(client);
+                await _clientRepository.RemoveAsync(existingClient);
             }
             else
             {
@@ -71,20 +59,28 @@ namespace BusinessLayer.Service
 
         }
 
-        public void UpdateClient(ClientDTO clientDTO)
+        public async Task UpdateClientAsync(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            var existingClient = _clientRepository.Get(client.Id);
+            
+            var existingClient = await _clientRepository.GetAsync(client.Id);
+
             if (existingClient != null)
             {
-                _clientRepository.Update(client);
+                //    _clientRepository.Update(client);
+                await _clientRepository.UpdateAsync(existingClient);
             }
             else
             {
-                ArgumentException argumentException = new ArgumentException("Client does not exist.", nameof(clientDTO));
+                ArgumentException argumentException = new("Client does not exist.", nameof(clientDTO));
                 throw argumentException;
             }
-        }
 
+        }
     }
 }
+
+            
+
+
+   

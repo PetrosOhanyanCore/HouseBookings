@@ -15,5 +15,9 @@ namespace DataLayer.IRepository
         Task<Client> GetClientByIdAsync(int id);
         IEnumerable<Client> GetAllClients();
         */
+        Task AddAsync(Client client);
+        Task<IEnumerable<Client>> GetAllAsync();
+        Task RemoveAsync(Client client);
+        Task UpdateAsync(Client client);
     }
 }
