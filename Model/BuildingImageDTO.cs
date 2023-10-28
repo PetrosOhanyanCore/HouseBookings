@@ -11,6 +11,6 @@ namespace Model
     {
         public int Id { get; set; }
         public string ImageName { get; set; }
-        public Building Building { get; set; }
+        public BuildingDTO Building { get; set; }
     }
 }
