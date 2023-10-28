@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using DataLayer.Repository;
 using BusinessLayer.IService;
 using BusinessLayer.Service;
-using Entity;
 using HouseBooking.Extansions;
 
 var builder = WebApplication.CreateBuilder(args);
