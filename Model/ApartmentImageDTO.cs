@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class ImageDTO
+    public class ApartmentImageDTO
     {
         public int Id { get; set; }
         public string ImageName { get; set; }
-
+        public int ApartmentId { get; set; }
         public ApartmentDTO ApartmentDTO { get; set; }
-        //public BuildingDTO BuildingDTO { get; set; }
+        
     }
 }

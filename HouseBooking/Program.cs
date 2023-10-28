@@ -30,6 +30,7 @@ builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IBuildingImageRepository, BuildingImageRepository>();
 builder.Services.AddScoped<IBuildingRepository, BuildingRepository>();
 builder.Services.AddScoped<IScoringRepository, ScoringRepository>();
+builder.Services.AddScoped<IApartmentImageRepository, ApartmentImageRepository>();
 
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IAddressService, AddressService>();
@@ -39,6 +40,8 @@ builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
 builder.Services.AddTransient<IClientService, ClientService>();
+builder.Services.AddTransient<IApartmentImageService, ApartmentImageService>();
+
 
 builder.Services.AddAutoMapperService();
 builder.Services.AddIdentityServer();

@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
-    public class ImageRepository :
+    public class ApartmentImageRepository :
         RepositoryBase<ApartmentImage>,
         IApartmentImageRepository
     {
-        public ImageRepository(DataBaseContext context)
+        public ApartmentImageRepository(DataBaseContext context)
             : base(context)
         {
         }

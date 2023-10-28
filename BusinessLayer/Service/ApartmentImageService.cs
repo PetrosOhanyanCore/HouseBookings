@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
-    public class ImageService : IImageService
+    public class ApartmentImageService : IApartmentImageService
     {
         private readonly IApartmentImageRepository _imgRepository;
         private readonly IMapper _mapper;
 
 
-        public ImageService(
+        public ApartmentImageService(
             IApartmentImageRepository imageRepository,
             IMapper mapper)
         {
@@ -26,7 +26,7 @@ namespace BusinessLayer.Service
             _mapper = mapper;
         }
 
-        public void AddImage(ImageDTO imageDTO)
+        public void AddImage(ApartmentImageDTO imageDTO)
         {
             try
             {
@@ -34,13 +34,13 @@ namespace BusinessLayer.Service
                 _imgRepository.Add(image);
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 throw;
             }
         }
-        public void UpdateImage(ImageDTO imageDTO)
+        public void UpdateImage(ApartmentImageDTO imageDTO)
         {
             try
             {
@@ -70,12 +70,12 @@ namespace BusinessLayer.Service
                 throw;
             }
         }
-        public IEnumerable<ImageDTO> GetAllImage()
+        public IEnumerable<ApartmentImageDTO> GetAllImage()
         {
             try
             {
                 var images = _imgRepository.GetAll();
-                return _mapper.Map<IEnumerable<ImageDTO>>(images);
+                return _mapper.Map<IEnumerable<ApartmentImageDTO>>(images);
             }
             catch (Exception ex)
             {
@@ -83,18 +83,28 @@ namespace BusinessLayer.Service
                 throw;
             }
         }
-        public ImageDTO GetImageById(int id)
+        public ApartmentImageDTO GetImageById(int id)
         {
             try
             {
                 var image = _imgRepository.Get(id);
-                return _mapper.Map<ImageDTO>(image);
+                return _mapper.Map<ApartmentImageDTO>(image);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 throw;
             }
+        }
+
+        public Task<ApartmentImageDTO> GetApartmentImageAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddApartmentImage(ApartmentImageDTO apartmentImageDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }
