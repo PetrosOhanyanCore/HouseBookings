@@ -38,7 +38,7 @@ namespace BusinessLayer.Service
         public async Task<ClientDTO> GetClientAsync(int id)
         {
             var client = await _clientRepository.GetAsync(id);
-            return _mapper.Map<ClientDTO>(client); throw new NotImplementedException();
+            return _mapper.Map<ClientDTO>(client); 
         }
 
         public async Task RemoveClientAsync(ClientDTO clientDTO)
