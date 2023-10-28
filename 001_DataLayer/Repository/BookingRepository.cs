@@ -34,25 +34,16 @@ namespace DataLayer.Repository
             var booking = _context.Bookings.FirstOrDefault(c => c.Id == id);
             return booking;
         }
-
-        public Task<Booking> GetBuildingByAddressIdAsync(int id)
+        public async Task<IEnumerable<Booking>> GetAllBookingInEndDateAsync(DateTime dateTime)
         {
-            throw new NotImplementedException();
+            List<Booking> bookings = await _context.Bookings.Where(a=>a.BookingEndDate == dateTime).ToListAsync();
+            return bookings;
         }
 
-        public Booking GetBuildingByAddressId(int id)
+        public async Task<IEnumerable<Booking>> GetAllBookingInCancelationDateAsync(DateTime dateTime)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Booking>> GetBuildingsByCountryAsync(string Apartment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Booking>> GetBuildingsByCityAsync(string Description)
-        {
-            throw new NotImplementedException();
+            List<Booking> bookings = await _context.Bookings.Where(a => a.CancelationDate == dateTime).ToListAsync();
+            return bookings;
         }
     }
 }

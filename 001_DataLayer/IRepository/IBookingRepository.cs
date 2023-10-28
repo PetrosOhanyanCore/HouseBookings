@@ -12,7 +12,8 @@ namespace DataLayer.IRepository
     {
         Booking GetBookingByID(int id);
         Task<Booking> GetBookingByIdAsync(int id);
-
+        Task<IEnumerable<Booking>> GetAllBookingInEndDateAsync(DateTime dateTime);
+        Task<IEnumerable<Booking>> GetAllBookingInCancelationDateAsync(DateTime dateTime);
         IEnumerable<Booking> GetAllBookings(int buildingId);
     }
 }

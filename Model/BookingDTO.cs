@@ -11,8 +11,8 @@ namespace Model
     {
         public int Id { get; set; }
         public ApartmentDTO Apartment { get; set; }
-        /*public BuildingDTO Building { get; set; }
-        public ClientDTO Client { get; set; }*/
+        public BuildingDTO Building { get; set; }
+        public ClientDTO Client { get; set; }
         public PaymentDTO Payment { get; set; }
         public Translation Description { get; set; }
         public string Note { get; set; }
