@@ -10,15 +10,19 @@ namespace DataLayer.IRepository
     public interface IScoringRepository : IRepositoryBase<Scoring>
     {
 
-        IEnumerable<Scoring> GetClientAllScoring(int IdClinet);
+        Task<IEnumerable<Scoring>> GetClientAllScoringsAsync(int clientId);
+        Task<IEnumerable<Scoring>> GetClientAllScoringsByRateAsync(int clientId);
+        Task<IEnumerable<Scoring>> GetClientAllScoringsByDateAsync(int clientId);
+        Task<IEnumerable<Client>> GetAllClientsByHighestScoringRateAsync();
+        Task<IEnumerable<Client>> GetAllClientsByLowestScoringRateAsync();
 
-        IEnumerable<Scoring> GetAllApartment();
+        Task<IEnumerable<Scoring>> GetAllApartmentsByScoreAsync();
 
-        IEnumerable<Scoring> GetAllBuilding();
+        Task<IEnumerable<Scoring>> GetAllBuildingsByScoreAsync();
 
-        IEnumerable<Scoring> GetClientScoringApartment(int IdClinet, int IdApartment);
+        Task<IEnumerable<Scoring>> GetClientScoringApartmentAsync(int clientId, int apartmentId);
 
-        IEnumerable<Scoring> GetClientScoringBuilding(int IdClinet, int IdBuilding);
+        Task<IEnumerable<Scoring>> GetClientScoringBuildingAsync(int clientId, int buildingId);
 
 
     }
