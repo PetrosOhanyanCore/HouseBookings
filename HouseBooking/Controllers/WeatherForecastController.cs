@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HouseBooking.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -16,6 +16,12 @@ namespace HouseBooking.Controllers
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpGet("HasSummaries")]
+        public void HasSummaries()
+        {
+            Console.WriteLine("HasSummaries");
         }
     }
 }

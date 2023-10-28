@@ -5,6 +5,7 @@ using DataLayer.Repository;
 using BusinessLayer.IService;
 using BusinessLayer.Service;
 using HouseBooking.Extansions;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,10 @@ builder.Services.AddDbContext<DataBaseContext>(options =>
 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection")
                     ));
+
+builder.Services.AddRouting();
+
+
 // Add services to the container.
 
 builder.Services.AddScoped<IApartmentRepository, ApartmentRepository>();
@@ -43,6 +48,22 @@ builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
+
+var routeBuilder = new RouteBuilder(app);
+
+routeBuilder.MapRoute("controller", async context =>
+{
+    await context.Response.WriteAsync("{controller} template");
+});
+
+routeBuilder.MapRoute("{controller}/{action}", async context =>
+{
+    await context.Response.WriteAsync("{controller}/{action} template");
+});
+
+app.UseRouting();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
