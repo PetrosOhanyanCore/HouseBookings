@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.IService;
+using Microsoft.AspNetCore.Mvc;
+using Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +10,60 @@ namespace HouseBooking.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
-        // GET: api/<BookingControllers>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        IBookingService _service;
+
+        public BookingController(IBookingService service)
         {
-            return new string[] { "value1", "value2" };
+            _service = service;
         }
 
-        // GET api/<BookingControllers>/5
+
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Task<BookingDTO> GetBookingAsync(int id)
         {
-            return "value";
+            return _service.GetBookingAsync(id);
         }
 
-        // POST api/<BookingControllers>
+
+        [HttpGet("{buildingId}")]
+        public IEnumerable<BookingDTO> GetAllBooking(int buildingId)
+        {
+            return _service.GetAllBooking(buildingId);
+        }
+
+        [HttpGet("{endTime}")]
+        public Task<IEnumerable<BookingDTO>> GetAllBookingsInEndTimeAsync(DateTime endTime)
+        {
+            return _service.GetAllBookingsInEndTimeAsync(endTime);
+        }
+
+        [HttpGet("{canceledTime}")]
+        public Task<IEnumerable<BookingDTO>> GetAllBookingsInCanceledAsync(DateTime canceledTime)
+        {
+            return _service.GetAllBookingsInCanceledAsync(canceledTime);
+        }
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public OkResult Post([FromBody] BookingDTO value)
         {
+            _service.AddBookingAsync(value);
+            return Ok();
         }
 
-        // PUT api/<BookingControllers>/5
+
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public OkResult UpdateBookingAsync(BookingDTO bookingDTO)
         {
+            _service.UpdateBookingAsync(bookingDTO);
+            return Ok();
         }
 
-        // DELETE api/<BookingControllers>/5
+
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public OkResult RemoveBookingAsync(BookingDTO bookingDTO)
         {
+            _service.RemoveBookingAsync(bookingDTO);
+            return Ok();
         }
     }
 }
