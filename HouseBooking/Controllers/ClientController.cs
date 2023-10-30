@@ -72,10 +72,12 @@ namespace HouseBooking.Controllers
             if (client == null)
                 return BadRequest("Invalid client data.");
 
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             await _clientService.RemoveClientAsync(client);
+            
             return Ok("Client deleted successfully");
 
         }
