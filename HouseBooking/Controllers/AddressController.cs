@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.IService;
 using DataLayer.IRepository;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,37 +18,53 @@ namespace HouseBooking.Controllers
             _addressService = addressService;
         }
 
+        [HttpGet("GetBuildingByAddressIdAsync/{id}")]
+        public async Task<AddressDTO> GetBuildingByAddressIdAsync(int id)
+        {
+            var address = await _addressService.GetBuildingByAddressIdAsync(id);
+            return address;
+        }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("GetBuildingByAddressId/{id}")]
+        public async Task<AddressDTO> GetBuildingByAddressId(int id)
         {
             var address = _addressService.GetBuildingByAddressId(id);
-            return Ok(address);
+            return address;
         }
 
-        //// GET api/<AddressController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        // POST api/<AddressController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetBuildingsByCountryAsync/{country}")]
+        public async Task<IEnumerable<AddressDTO>> GetBuildingsByCountryAsync(string country)
         {
+            var result = await _addressService.GetBuildingsByCountryAsync(country);
+            return result;
         }
 
-        // PUT api/<AddressController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("GetBuildingsByCityAsync/{city}")]
+        public async Task<IEnumerable<AddressDTO>> GetBuildingsByCityAsync(string city)
         {
+            var result = await _addressService.GetBuildingsByCityAsync(city);
+            return result;
         }
 
-        // DELETE api/<AddressController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet("GetBuildingsByDistrictAsync/{district}")]
+        public async Task<IEnumerable<AddressDTO>> GetBuildingsByDistrictAsync(string district)
         {
+            var result = await _addressService.GetBuildingsByDistrictAsync(district);
+            return result;
+        }
+
+        [HttpGet("GetBuildingsByHouseTypeAsync/{house, country}")]
+        public async Task<IEnumerable<AddressDTO>> GetBuildingsByHouseTypeAsync(string? house, string country)
+        {
+            var result = await _addressService.GetBuildingsByHouseTypeAsync(house, country);
+            return result;
+        }
+
+        [HttpGet("GetBuildingsCountByCityAsync/{city}")]
+        public async Task<int> GetBuildingsCountByCityAsync(string city)
+        {
+            var result = await _addressService.GetBuildingsCountByCityAsync(city);
+            return result;
         }
     }
 }
