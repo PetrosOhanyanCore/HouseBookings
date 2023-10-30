@@ -66,5 +66,27 @@ namespace HouseBooking.Controllers
             var result = await _addressService.GetBuildingsCountByCityAsync(city);
             return result;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] AddressDTO address)
+        {
+            await _addressService.AddAddress(address);
+            return Ok();
+        }
+
+
+        [HttpPut("UpdateAddressAsync/{address}")]
+        public async Task<IActionResult> UpdateBookingAsync(AddressDTO address)
+        {
+            await _addressService.UpdateAddress(address);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteAddressAsync/{id}")]
+        public async Task<IActionResult> RemoveBookingAsync(int id)
+        {
+            await _addressService.RemoveAddress(id);
+            return Ok();
+        }
     }
 }
