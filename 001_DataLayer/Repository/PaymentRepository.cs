@@ -59,7 +59,7 @@ namespace DataLayer.Repository
         public async Task UpdateAsync(Payment payment)
         {
             _context.Payments.Update(payment);
-            await _context.SaveChangesAsync(true);
+            await _context.SaveChangesAsync();
         }
     }
 }
