@@ -12,12 +12,12 @@ namespace Model
         public string MiddleName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public Translation Translation { get; set; }
+        public TranslationDTO Translation { get; set; }
         public DateTime? BirthDate { get; set; }
-        public Address LivingAddress { get; set; }
-        public ICollection<Apartment> Apartments { get; set; }
-        public ICollection<Booking> Bookings { get; set; }
-        public ICollection<Scoring> Scorings { get; set; }
+        public AddressDTO LivingAddress { get; set; }
+        public ICollection<ApartmentDTO> Apartments { get; set; }
+        public ICollection<BookingDTO> Bookings { get; set; }
+        public ICollection<ScoringDTO> Scorings { get; set; }
     }
 }
 

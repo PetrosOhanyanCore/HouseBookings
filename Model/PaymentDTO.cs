@@ -25,7 +25,6 @@ namespace Model
         public DateTime PaymentDate { get; set; }
 
         public int BookingId { get; set; }
-        // public BookingDto Booking { get; set; }}
+        public BookingDTO Booking { get; set; }
     }
-
 }

@@ -13,7 +13,7 @@ namespace Model
 
         public int Id { get; set; }
 
-        public Address Location { get; set; }
+        public AddressDTO Location { get; set; }
         public int Rating { get; set; }
         public string Template { get; set; }
         public int BuildingFloorQuantity { get; set; }
@@ -24,10 +24,10 @@ namespace Model
         public double? ApartmentSquareMin { get; set; }
         public double? ApartmentSquareMax { get; set; }
 
-        public Translation Translation { get; set; }
-        public IEnumerable<Apartment> Apartments { get; set; }
-        public ICollection<Options> Options { get; set; }
-        public ICollection<Scoring> Scorings { get; set; }
+        public TranslationDTO  Translation { get; set; }
+        public IEnumerable<ApartmentDTO> Apartments { get; set; }
+        public ICollection<OptionsDTO> Options { get; set; }
+        public ICollection<ScoringDTO> Scorings { get; set; }
 
     }
 }
