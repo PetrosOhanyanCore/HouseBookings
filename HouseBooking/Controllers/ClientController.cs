@@ -1,5 +1,4 @@
 ﻿using BusinessLayer.IService;
-using HouseBooking.IControllers;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -7,7 +6,7 @@ namespace HouseBooking.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase, IClientController
+    public class ClientController : ControllerBase
     {
         IClientService _clientService;
         public ClientController(IClientService clientService)

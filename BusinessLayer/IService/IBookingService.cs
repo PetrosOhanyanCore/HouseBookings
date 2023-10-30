@@ -15,9 +15,9 @@ namespace BusinessLayer.IService
         Task<IEnumerable<BookingDTO>> GetAllBookingsInEndTimeAsync(DateTime endTime);
         Task<IEnumerable<BookingDTO>> GetAllBookingsInCanceledAsync(DateTime canceledTime);
 
-        void AddBookingAsync(BookingDTO bookingDTO);
-        void RemoveBookingAsync(BookingDTO bookingDTO);
-        void UpdateBookingAsync(BookingDTO bookingDTO);
+        Task AddBookingAsync(BookingDTO bookingDTO);
+        Task RemoveBookingAsync(BookingDTO bookingDTO);
+        Task UpdateBookingAsync(BookingDTO bookingDTO);
     }
 }
 

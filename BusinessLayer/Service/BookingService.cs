@@ -21,13 +21,13 @@ namespace BusinessLayer.Service
         private readonly IBookingRepository _bookingRepository;
         private readonly IMapper _mapper;
 
-        public BookingService(IBookingRepository bookingRepository,IMapper mapper)
+        public BookingService(IBookingRepository bookingRepository, IMapper mapper)
         {
             _bookingRepository = bookingRepository;
             _mapper = mapper;
         }
 
-        public void AddBookingAsync(BookingDTO bookingDTO)
+        public async Task AddBookingAsync(BookingDTO bookingDTO)
         {
             var booking = _mapper.Map<BookingDTO, Booking>(bookingDTO);
             _bookingRepository.Add(booking);
@@ -57,7 +57,7 @@ namespace BusinessLayer.Service
             return _mapper.Map<Booking, BookingDTO>(bookings);
         }
 
-        public void RemoveBookingAsync(BookingDTO bookingDTO)
+        public async Task RemoveBookingAsync(BookingDTO bookingDTO)
         {
             var booking = _mapper.Map<BookingDTO, Booking>(bookingDTO);
             if (booking != null)
@@ -66,7 +66,7 @@ namespace BusinessLayer.Service
             }
         }
 
-        public void UpdateBookingAsync(BookingDTO bookingDTO)
+        public async Task UpdateBookingAsync(BookingDTO bookingDTO)
         {
             var booking = _mapper.Map<BookingDTO, Booking>(bookingDTO);
             _bookingRepository.Update(booking);

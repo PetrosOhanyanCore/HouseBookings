@@ -19,9 +19,10 @@ namespace HouseBooking.Controllers
 
 
         [HttpGet("{id}")]
-        public Task<BookingDTO> GetBookingAsync(int id)
+        public async Task<BookingDTO> GetBookingAsync(int id)
         {
-            return _service.GetBookingAsync(id);
+            var result = await _service.GetBookingAsync(id);
+            return result;
         }
 
 
@@ -32,9 +33,10 @@ namespace HouseBooking.Controllers
         }
 
         [HttpGet("{endTime}")]
-        public Task<IEnumerable<BookingDTO>> GetAllBookingsInEndTimeAsync(DateTime endTime)
+        public async Task<IEnumerable<BookingDTO>> GetAllBookingsInEndTimeAsync(DateTime endTime)
         {
-            return _service.GetAllBookingsInEndTimeAsync(endTime);
+            var result = await _service.GetAllBookingsInEndTimeAsync(endTime);
+            return result;
         }
 
         [HttpGet("{canceledTime}")]
@@ -44,25 +46,25 @@ namespace HouseBooking.Controllers
         }
 
         [HttpPost]
-        public OkResult Post([FromBody] BookingDTO value)
+        public async Task<IActionResult> Post([FromBody] BookingDTO value)
         {
-            _service.AddBookingAsync(value);
+            await _service.AddBookingAsync(value);
             return Ok();
         }
 
 
         [HttpPut("{id}")]
-        public OkResult UpdateBookingAsync(BookingDTO bookingDTO)
+        public async Task<IActionResult> UpdateBookingAsync(BookingDTO bookingDTO)
         {
-            _service.UpdateBookingAsync(bookingDTO);
+            await _service.UpdateBookingAsync(bookingDTO);
             return Ok();
         }
 
 
         [HttpDelete("{id}")]
-        public OkResult RemoveBookingAsync(BookingDTO bookingDTO)
+        public async Task<IActionResult> RemoveBookingAsync(BookingDTO bookingDTO)
         {
-            _service.RemoveBookingAsync(bookingDTO);
+            await _service.RemoveBookingAsync(bookingDTO);
             return Ok();
         }
     }
