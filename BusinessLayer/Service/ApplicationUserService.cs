@@ -24,12 +24,12 @@ namespace BusinessLayer.Service
         public void CreateApplicationUserAsync(ApplicationUserDTO applicationUserDTO)
         {
             var appUser = _mapper.Map<ApplicationUserDTO,ApplicationUser>(applicationUserDTO);
-            _applicationUserRepository.Add(appUser);
+             _applicationUserRepository.Add(appUser);
         }
         public void UpdateApplicationUserAsync(ApplicationUserDTO applicationUserDTO)
         {
             var appUser = _mapper.Map<ApplicationUserDTO, ApplicationUser>(applicationUserDTO);
-            _applicationUserRepository.Update(appUser);
+             _applicationUserRepository.Update(appUser);
         }
 
         public void DeleteApplicationUserAsync(ApplicationUserDTO applicationUserDTO)
