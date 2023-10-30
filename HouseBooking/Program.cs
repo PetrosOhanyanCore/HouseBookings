@@ -24,23 +24,27 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IOptionsRepository, OptionsRepository>();
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
-builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IBuildingImageRepository, BuildingImageRepository>();
 builder.Services.AddScoped<IBuildingRepository, BuildingRepository>();
 builder.Services.AddScoped<IScoringRepository, ScoringRepository>();
 builder.Services.AddScoped<IApartmentImageRepository, ApartmentImageRepository>();
+builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IAddressService, AddressService>();
 builder.Services.AddScoped<IScoringService, ScoringService>();
-//builder.Services.AddTransient<IClientService, ClientService>();
 builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
 builder.Services.AddTransient<IClientService, ClientService>();
+builder.Services.AddTransient<IBuildingService, BuildingService>();
 builder.Services.AddTransient<IApartmentImageService, ApartmentImageService>();
+builder.Services.AddTransient<IBuildingImageService, BuildingImageService>();
+builder.Services.AddTransient<IBookingService, BookingService>();
+builder.Services.AddScoped<ITranslationService, TranslationService>();
+
 
 
 builder.Services.AddAutoMapperService();
@@ -87,5 +91,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.MapControllerRoute(
+//    name: "PaymentRoute",
+//    pattern: "api/payments/{action}/{id?}", 
+//    defaults: new { controller = "Payment", action = "AddPayment" });
 
 app.Run();
