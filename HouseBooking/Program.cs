@@ -34,7 +34,7 @@ builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IAddressService, AddressService>();
-builder.Services.AddScoped<IScoringService, ScoringService>();
+builder.Services.AddTransient<IScoringService, ScoringService>();
 builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
@@ -43,7 +43,7 @@ builder.Services.AddTransient<IBuildingService, BuildingService>();
 builder.Services.AddTransient<IApartmentImageService, ApartmentImageService>();
 builder.Services.AddTransient<IBuildingImageService, BuildingImageService>();
 builder.Services.AddTransient<IBookingService, BookingService>();
-builder.Services.AddScoped<ITranslationService, TranslationService>();
+builder.Services.AddTransient<ITranslationService, TranslationService>();
 
 
 

@@ -37,7 +37,8 @@ namespace HouseBooking.Extansions
                     c.Password.RequiredLength = 8;
                     c.Password.RequireNonAlphanumeric = true;
                     c.Password.RequireUppercase = true;
-                }).AddEntityFrameworkStores<DataBaseContext>()
+                })
+                .AddEntityFrameworkStores<DataBaseContext>()
                 .AddSignInManager<SignInManager<ApplicationUser>>()
                 .AddDefaultTokenProviders();
 
