@@ -25,18 +25,19 @@ namespace BusinessLayer.Service
             _mapper = mapper;
         }
 
-        public void AddOptions(OptionsDTO optionsDTO)
+        public Task AddOptions(OptionsDTO optionsDTO)
         {
             try
             {
                 Options options = _mapper.Map<Options>(optionsDTO);
                 _optionsRepository.Add(options);
+                return Task.CompletedTask;
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                throw;
+                return Task.FromException(ex);
             }
         }
         public void UpdateOptions(OptionsDTO optionsDTO)

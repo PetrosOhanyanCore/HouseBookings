@@ -9,7 +9,7 @@ namespace BusinessLayer.IService
 {
     public interface IOptionsService
     {
-        void AddOptions(OptionsDTO optionsDTO);
+        Task AddOptions(OptionsDTO optionsDTO);
         void UpdateOptions(OptionsDTO optionsDTO);
         void RemoveOptions(int id);
         Task<OptionsDTO> GetOptionByIdAsync(int id);
