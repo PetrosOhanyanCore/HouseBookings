@@ -16,15 +16,15 @@ namespace HouseBooking.Controllers
         }
 
         [HttpGet("SwithLanguage")]
-        public int SwithLanguage(string language)
+        public IActionResult SwithLanguage(string language)
         {
             int translation = _translationService.SwithLanguage(language);
 
-            if (translation != null)
+            if (translation != 0)
             {
-                return Ok();
+                return Ok(translation);
             }
-            return NotFound();
+            return NotFound(language);
         }
     }
 }
