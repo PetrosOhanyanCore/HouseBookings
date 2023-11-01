@@ -26,85 +26,63 @@ namespace BusinessLayer.Service
             _mapper = mapper;
         }
 
-        public void AddImage(ApartmentImageDTO imageDTO)
-        {
-            try
-            {
-                ApartmentImage image = _mapper.Map<ApartmentImage>(imageDTO);
-                _imgRepository.Add(image);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-        }
         public void UpdateImage(ApartmentImageDTO imageDTO)
         {
-            try
-            {
-                ApartmentImage image = _mapper.Map<ApartmentImage>(imageDTO);
-                _imgRepository.Update(image);
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+            ApartmentImage image = _mapper.Map<ApartmentImage>(imageDTO);
+            _imgRepository.Update(image);
+
+
         }
-        public void RemoveImage(int id)
+
+
+        public void RemoveApartmentImage(ApartmentImageDTO apartmentImageDTO)
         {
-            try
-            {
-                var image = _imgRepository.Get(id);
-                if (image != null)
-                {
-                    _imgRepository.Remove(image);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+            ApartmentImage apartementImage = _mapper.Map<ApartmentImage>(apartmentImageDTO);
+            _imgRepository.Remove(apartementImage);
+
         }
-        public IEnumerable<ApartmentImageDTO> GetAllImage()
+
+
+        public void RemoveApartmentImageById(int apartmentImageId)
         {
-            try
-            {
-                var images = _imgRepository.GetAll();
-                return _mapper.Map<IEnumerable<ApartmentImageDTO>>(images);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+            ApartmentImage apartementImage = _mapper.Map<ApartmentImage>(apartmentImageId);
+            _imgRepository.RemoveApartmentImageById(apartmentImageId);
+        }
+
+
+        public IEnumerable<ApartmentImageDTO> GetAllApartmentImages()
+        {
+
+            var images = _imgRepository.GetAll();
+            return _mapper.Map<IEnumerable<ApartmentImageDTO>>(images);
+        }
+
+
+        public async Task<IEnumerable<ApartmentImageDTO>> GetAllApartmentImagesByApartmentIdAsync(int apartmentId)
+        {
+            var images = await _imgRepository.GetApartmentAllImagesAsync(apartmentId);
+            return _mapper.Map<IEnumerable<ApartmentImageDTO>>(images);
         }
         public ApartmentImageDTO GetImageById(int id)
         {
-            try
-            {
-                var image = _imgRepository.Get(id);
-                return _mapper.Map<ApartmentImageDTO>(image);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+            var image = _imgRepository.Get(id);
+            return _mapper.Map<ApartmentImageDTO>(image);
         }
 
-        public Task<ApartmentImageDTO> GetApartmentImageAsync()
+        public async Task<ApartmentImageDTO> GetApartmentImageByIdAsync(int apartmentId)
         {
-            throw new NotImplementedException();
+            var image = await _imgRepository.GetAsync(apartmentId);
+            return _mapper.Map<ApartmentImageDTO>(image);
         }
 
-        public Task AddApartmentImage(ApartmentImageDTO apartmentImageDTO)
+        public void AddApartmentImage(ApartmentImageDTO apartmentImageDTO)
         {
-            throw new NotImplementedException();
+       
+                ApartmentImage apartementImage = _mapper.Map<ApartmentImage>(apartmentImageDTO);
+            _imgRepository.Add(apartementImage);
+            
         }
+       
     }
 }
