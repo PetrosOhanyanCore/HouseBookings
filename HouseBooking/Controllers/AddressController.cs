@@ -19,10 +19,19 @@ namespace HouseBooking.Controllers
         }
 
         [HttpGet("GetBuildingByAddressIdAsync/{id}")]
-        public async Task<AddressDTO> GetBuildingByAddressIdAsync(int id)
+        public async Task<IActionResult> GetBuildingByAddressIdAsync(int id)
         {
-            var address = await _addressService.GetBuildingByAddressIdAsync(id);
-            return address;
+            try
+            {
+                var address = await _addressService.GetBuildingByAddressIdAsync(id);
+                return Ok(address);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return NotFound(id);
+            }
+
         }
 
         [HttpGet("GetBuildingByAddressId/{id}")]
