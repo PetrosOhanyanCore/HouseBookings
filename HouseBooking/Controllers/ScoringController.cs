@@ -18,39 +18,59 @@ namespace HouseBooking.Controllers
         }
 
         [HttpGet("GetScoringAsync/{id}")]
-        public async Task<ScoringDTO> GetScoringAsync(int id)
+        public async Task<IActionResult> GetScoringAsync(int id)
         {
             var result = await _service.GetScoringAsync(id);
-            return result;
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
 
         [HttpGet("GetClientAllScoringsAsync/{clientId}")]
-        public async Task<IEnumerable<ScoringDTO>> GetClientAllScoringsAsync(int clientId)
+        public async Task<IActionResult> GetClientAllScoringsAsync(int clientId)
         {
             var result = await _service.GetClientAllScoringsAsync(clientId);
-            return result;
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
 
         [HttpGet("GetClientAllScoringsByRateAsync/{clientId}")]
-        public async Task<IEnumerable<ScoringDTO>> GetClientAllScoringsByRateAsync(int clientId)
+        public async Task<IActionResult> GetClientAllScoringsByRateAsync(int clientId)
         {
             var result = await _service.GetClientAllScoringsByRateAsync(clientId);
-            return result;
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
 
         [HttpGet("GetClientAllScoringsByDateAsync/{clientId}")]
-        public async Task<IEnumerable<ScoringDTO>> GetClientAllScoringsByDateAsync(int clientId)
+        public async Task<IActionResult> GetClientAllScoringsByDateAsync(int clientId)
         {
             var result = await _service.GetClientAllScoringsByDateAsync(clientId);
-            return result;
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
 
 
         [HttpGet("GetAllClientsByHighestScoringRateAsync/")]
-        public async Task<IEnumerable<ClientDTO>> GetAllClientsByHighestScoringRateAsync()
+        public async Task<IActionResult> GetAllClientsByHighestScoringRateAsync()
         {
             var result = await _service.GetAllClientsByHighestScoringRateAsync();
-            return result;
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
     }
 }
