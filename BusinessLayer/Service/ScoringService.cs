@@ -32,19 +32,6 @@ namespace BusinessLayer.Service
         }
 
 
-
-        public IEnumerable<ScoringDTO> FindScorings(Expression<Func<ScoringDTO, bool>> predicate)
-        {
-
-            Expression<Func<Entity.Scoring, bool>> entityPredicate
-                = _mapper.Map<Expression<Func<Entity.Scoring, bool>>>(predicate);
-
-            var scorings = _scoringRepository.Find(entityPredicate);
-
-            return _mapper.Map<IEnumerable<ScoringDTO>>(scorings);
-
-        }
-
         public ScoringDTO GetScoringById(int id)
         {
             var scoring = _scoringRepository.Get(id);

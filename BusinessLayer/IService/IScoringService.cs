@@ -29,7 +29,6 @@ namespace BusinessLayer.IService
 
         Task<ScoringDTO> GetScoringAsync(int id);
         IEnumerable<ScoringDTO> GetAllScorings();
-        IEnumerable<ScoringDTO> FindScorings(Expression<Func<ScoringDTO, bool>> predicate);
 
         void AddScoring(ScoringDTO scoring);
 
