@@ -11,7 +11,13 @@ namespace DataLayer.IRepository
         {
 
              //Id              Name             En             Rus              Arm 
-             int SwitchLanguage(string language);
+        int SwitchLanguage(string language);
+
+        Task<Translation> GetTranslationtByIdAsync(int id);
+        Task<IEnumerable<Translation>> GetAllAsync();
+        Task AddAsync(Translation translation);
+        Task RemoveAsync(Translation translation);
+        Task UpdateAsync(Translation translation);
 
     }
 }
