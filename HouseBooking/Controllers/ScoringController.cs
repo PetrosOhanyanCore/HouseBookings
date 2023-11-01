@@ -20,57 +20,72 @@ namespace HouseBooking.Controllers
         [HttpGet("GetScoringAsync/{id}")]
         public async Task<IActionResult> GetScoringAsync(int id)
         {
-            var result = await _service.GetScoringAsync(id);
-
-            if (result == null)
-                return NotFound();
-
-            return Ok(result);
+            try
+            {
+                var result = await _service.GetScoringAsync(id);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                    return NotFound();
+                }
         }
 
         [HttpGet("GetClientAllScoringsAsync/{clientId}")]
         public async Task<IActionResult> GetClientAllScoringsAsync(int clientId)
         {
-            var result = await _service.GetClientAllScoringsAsync(clientId);
-
-            if (result == null)
-                return NotFound();
-
-            return Ok(result);
+            try
+            {
+                var result = await _service.GetClientAllScoringsAsync(clientId);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                    return NotFound();
+            }
         }
 
         [HttpGet("GetClientAllScoringsByRateAsync/{clientId}")]
         public async Task<IActionResult> GetClientAllScoringsByRateAsync(int clientId)
         {
-            var result = await _service.GetClientAllScoringsByRateAsync(clientId);
-
-            if (result == null)
-                return NotFound();
-
-            return Ok(result);
+            try
+            {
+                var result = await _service.GetClientAllScoringsByRateAsync(clientId);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                    return NotFound();
+                }
         }
 
         [HttpGet("GetClientAllScoringsByDateAsync/{clientId}")]
         public async Task<IActionResult> GetClientAllScoringsByDateAsync(int clientId)
         {
-            var result = await _service.GetClientAllScoringsByDateAsync(clientId);
-
-            if (result == null)
-                return NotFound();
-
-            return Ok(result);
+            try
+            {
+                var result = await _service.GetClientAllScoringsByDateAsync(clientId);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                    return NotFound();
+                }
         }
 
 
         [HttpGet("GetAllClientsByHighestScoringRateAsync/")]
         public async Task<IActionResult> GetAllClientsByHighestScoringRateAsync()
         {
-            var result = await _service.GetAllClientsByHighestScoringRateAsync();
-
-            if (result == null)
+            try
+            {
+                var result = await _service.GetAllClientsByHighestScoringRateAsync();
+                return Ok(result);
+            }
+            catch (Exception)
+            {
                 return NotFound();
-
-            return Ok(result);
+            }
         }
     }
 }
