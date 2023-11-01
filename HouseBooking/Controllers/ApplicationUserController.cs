@@ -20,132 +20,178 @@ namespace HouseBooking.Controllers
         [HttpGet("GetAllApplicationUsersInFirstNameAsync/{firstName}")]
         public async Task<IActionResult> GetAllApplicationUsersInFirstNameAsync(string firstName)
         {
-            var users = await _userService.GetAllApplicationUsersInFirstNameAsync(firstName);
-            if (users == null)
+            try
             {
-                NotFound("Users are not founded");
+                var users = await _userService.GetAllApplicationUsersInFirstNameAsync(firstName);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception ex)
+            {
+                return NotFound("Users are not founded");
+            }
         }
 
         // GET api/<ApplicationUserController>/5
         [HttpGet("GetAllApplicationUsersInLastNameAsync/{lastName}")]
         public async Task<IActionResult> GetAllApplicationUsersInLastNameAsync(string lastName)
         {
-            var users = await _userService.GetAllApplicationUsersInLastNameAsync(lastName);
-            if (users == null)
+            try
             {
-                NotFound("Users are not founded");
+                var users = await _userService.GetAllApplicationUsersInLastNameAsync(lastName);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception)
+            {
+                return NotFound("Users are not founded");
+            }
         }
         [HttpGet("GetAllActiveUsersAsync")]
         public async Task<IActionResult> GetAllActiveUsersAsync()
-        {
-            var users = await _userService.GetAllActiveUsersAsync();
-            if (users == null)
+        {           
+            try
             {
-                NotFound("Users are not founded");
+                var users = await _userService.GetAllActiveUsersAsync();
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception)
+            {
+                return NotFound("Users are not founded");
+            }
         }
         [HttpGet("CountAllActiveUsersAsync")]
         public async Task<IActionResult> CountAllActiveUsersAsync()
         {
-            var usersCount = await _userService.CountAllActiveUsersAsync();
-            return Ok(usersCount);
+            try
+            {
+                var usersCount = await _userService.CountAllActiveUsersAsync();
+                return Ok(usersCount);
+            }
+            catch (Exception)
+            {
+                return NotFound("Users are not founded");
+            }
         }
         [HttpGet("GetAllApplicationUsersInCreatedTimeAsync")]
         public async Task<IActionResult> GetAllApplicationUsersInCreatedTimeAsync(DateTime createdTime)
         {
-            var users = await _userService.GetAllApplicationUsersInCreatedTimeAsync(createdTime);
-            if (users == null)
+            try
             {
-                NotFound("Users are not founded");
+                var users = await _userService.GetAllApplicationUsersInCreatedTimeAsync(createdTime);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception)
+            {
+                return NotFound("Users are not founded");
+            }
         }
         [HttpGet("GetAllApplicationUSersInDeactivatedAsync")]
         public async Task<IActionResult> GetAllApplicationUSersInDeactivatedAsync(DateTime deactivatedTime)
         {
-            var users = await _userService.GetAllApplicationUSersInDeactivatedAsync(deactivatedTime);
-            if (users == null)
+            try
             {
-                NotFound("Users are not founded");
+                var users = await _userService.GetAllApplicationUSersInDeactivatedAsync(deactivatedTime);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception)
+            {
+                return NotFound("Users are not founded");
+            }
         }
         [HttpGet("GetApplicationUserInClientIdAsync/{id}")]
         public async Task<IActionResult> GetApplicationUserInClientIdAsync(int id)
         {
-            var user = await _userService.GetApplicationUserInClientIdAsync(id);
-            if (user == null)
+            try
             {
-                NotFound("User is not founded");
+                var user = await _userService.GetApplicationUserInClientIdAsync(id);
+                return Ok(user);
             }
-            return Ok(user);
+            catch (Exception)
+            {
+                return NotFound("User is not founded");
+            }
         }
         [HttpGet("GetApplicationUserInPhoneNumberAsync/{phoneNumber}")]
         public async Task<IActionResult> GetApplicationUserInPhoneNumberAsync(string phoneNumber)
         {
-            var user = await _userService.GetApplicationUserInPhoneNumberAsync(phoneNumber);
-            if (user == null)
+            try
             {
-                NotFound("User is not founded");
+                var user = await _userService.GetApplicationUserInPhoneNumberAsync(phoneNumber);
+                return Ok(user);
             }
-            return Ok(user);
+            catch (Exception)
+            {
+                return NotFound("User is not founded");
+            }
         }
         [HttpGet("GetAllApplicationUSersByAccesTokenAsync/{accesToken}")]
         public async Task<IActionResult> GetAllApplicationUSersByAccesTokenAsync(string accesToken)
         {
-            var users = await _userService.GetAllApplicationUSersByAccesTokenAsync(accesToken);
-            if (users == null)
+            try
             {
-                NotFound("User are not founded");
+                var users = await _userService.GetAllApplicationUSersByAccesTokenAsync(accesToken);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception)
+            {
+                return NotFound("Users are not founded");
+            }
         }
         [HttpGet("GetAllApplicationUsersByBirthDateAsync/{birthDate}")]
         public async Task<IActionResult> GetAllApplicationUsersByBirthDateAsync(DateTime birthDate)
         {
-            var users = await _userService.GetAllApplicationUsersByBirthDateAsync(birthDate);
-            if (users == null)
+            try
             {
-                NotFound("User are not founded");
+                var users = await _userService.GetAllApplicationUsersByBirthDateAsync(birthDate);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception)
+            {
+                return NotFound("User are not founded");
+            }
         }
         // POST api/<ApplicationUserController>
         [HttpPost]
         public void CreateApplicationUser([FromBody] ApplicationUserDTO applicationUserDTO)
         {
+            try
+            {
                 _userService.CreateApplicationUserAsync(applicationUserDTO);
                 Ok("User was succesfully created");
+            }
+            catch (Exception)
+            {
+                BadRequest();
+            }
         }
 
         // PUT api/<ApplicationUserController>/5
         [HttpPut]
         public void UpdateApplicationUser([FromBody] ApplicationUserDTO applicationUserDTO)
         {
-            if (applicationUserDTO == null)
+            try
+            {
+                _userService.UpdateApplicationUserAsync(applicationUserDTO);
+                Ok("User was succesfully updated");
+            }
+            catch (Exception)
             {
                 NotFound("User does not exist");
             }
-            _userService.UpdateApplicationUserAsync(applicationUserDTO);
-            Ok("User was succesfully updated");
         }
 
         // DELETE api/<ApplicationUserController>/5
         [HttpDelete]
         public void DeleteApplicationUser([FromBody] ApplicationUserDTO applicationUserDTO)
         {
-            if (applicationUserDTO == null)
+            try
+            {
+                _userService.DeleteApplicationUserAsync(applicationUserDTO);
+                Ok("User was succesfully deleted");
+            }
+            catch (Exception)
             {
                 NotFound("User does not exist");
             }
-            _userService.DeleteApplicationUserAsync(applicationUserDTO);
-            Ok("User was succesfully deleted");
-
         }
     }
 }
