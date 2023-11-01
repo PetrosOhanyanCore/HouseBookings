@@ -13,12 +13,11 @@ namespace HouseBooking.Controllers
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
-        private readonly IMapper _mapper;
 
         public PaymentController(IPaymentService paymentService, IMapper mapper)
         {
             _paymentService = paymentService;
-            _mapper = mapper;
+
         }
 
         [HttpPost]
@@ -37,8 +36,7 @@ namespace HouseBooking.Controllers
         public async Task<IActionResult> GetAllPayments()
         {
             var payments = await _paymentService.GetAllPaymentsAsync();
-            var paymentDTOs = _mapper.Map<IEnumerable<PaymentDTO>>(payments);
-            return Ok(paymentDTOs);
+            return Ok(payments);
         }
 
         [HttpGet("{id}")]
@@ -51,8 +49,8 @@ namespace HouseBooking.Controllers
                 return NotFound("Payment not found");
             }
 
-            var paymentDTO = _mapper.Map<PaymentDTO>(payment);
-            return Ok(paymentDTO);
+
+            return Ok(payment);
         }
 
         [HttpPut("{id}")]

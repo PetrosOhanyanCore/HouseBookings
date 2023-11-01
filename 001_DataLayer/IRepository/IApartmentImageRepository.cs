@@ -1,6 +1,7 @@
 ﻿
 using DataLayer.IRepository;
 using Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,12 @@ using System.Threading.Tasks;
 namespace DataLayer.IRepository
 {
     public interface IApartmentImageRepository : IRepositoryBase<ApartmentImage>
-    {
-        ApartmentImage GetImageByID(int id);
-        Task<ApartmentImage> GetImageByIdAsync(int id);
+    { 
 
-        IEnumerable<ApartmentImage> GetAllImages(int buildingId);
+        Task<ICollection<ApartmentImage>> GetApartmentAllImagesAsync(int apartmentId);
+        void RemoveApartmentImageById(int apartmentImageId);
+
+
+
     }
 }

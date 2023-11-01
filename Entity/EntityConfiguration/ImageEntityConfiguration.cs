@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using System.Reflection.Emit;
 
 namespace Entity.EntityConfiguration
+    
 {
+    //Apartment
     public class ImageEntityConfiguration : IEntityTypeConfiguration<ApartmentImage>
     {
         public void Configure(EntityTypeBuilder<ApartmentImage> builder)
@@ -16,7 +18,13 @@ namespace Entity.EntityConfiguration
             builder.ToTable("Image");
             builder.HasKey(c => c.Id);
             builder.HasAlternateKey(c => c.ApartmentId);
-            builder.Property(c => c.ImageName).HasMaxLength(50);            
+            builder.Property(c => c.ImageName).HasMaxLength(50);
+
+
+            builder.HasOne(p => p.Apartment)
+         .WithMany(p => p.ApartmentImages)
+         .HasForeignKey(k => k.ApartmentId);
+
         }
     }
 }

@@ -20,27 +20,22 @@ namespace DataLayer.Repository
         {
         }
 
-        //public IEnumerable<Image<Type>> GetAllImages(int buildingId)
-        //{
-        //    var result = _context.Images.Where(p => p.PropertyId == buildingId).ToList();
-        //    return result;
-        //}
-
-        public async Task<ApartmentImage> GetImageByIdAsync(int id)
+        public async Task<ICollection<ApartmentImage>> GetApartmentAllImagesAsync(int apartmentId)
         {
-            var image = await _context.Images.FirstOrDefaultAsync(c => c.Id == id);
-            return image;
+            var images = await _context.ApartmentImages
+                       .Where(x => x.Id == apartmentId)
+                       .ToListAsync();
+
+            return images;
         }
-
-        public ApartmentImage GetImageByID(int id)
+        public void RemoveApartmentImageById(int apartmentImageId)
         {
-            var image = _context.Images.FirstOrDefault(c => c.Id == id);
-            return image;
-        }
 
-        public IEnumerable<ApartmentImage> GetAllImages(int buildingId)
-        {
-            throw new NotImplementedException();
+            var image = Get(apartmentImageId);
+            if (image != null)
+            {
+                Remove(image);
+            }
         }
     }
 }
