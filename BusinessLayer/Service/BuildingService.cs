@@ -13,7 +13,6 @@ namespace BusinessLayer.Service
 {
     public class BuildingService : IBuildingService
     {
-
         private readonly IBuildingRepository _buildingRepositroy;
         private readonly IMapper _mapper;
 

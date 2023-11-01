@@ -55,7 +55,7 @@ namespace HouseBooking.Filters
         private string DescribeEnum(IList<IOpenApiAny> enums, string proprtyTypeName)
         {
             List<string> enumDescriptions = new List<string>();
-            var enumType = GetEnumTypeByName(proprtyTypeName);
+            Type enumType = GetEnumTypeByName(proprtyTypeName);
             if (enumType == null)
                 return null;
 
@@ -63,9 +63,9 @@ namespace HouseBooking.Filters
             {
                 int enumInt = enumOption.Value;
 
-               
 
-               // enumDescriptions.Add(string.Format("{0} = {1}", enumInt, Enum.GetName(enumType, enumInt)));
+                var enumName = Enum.GetName(enumType, enumInt);
+                enumDescriptions.Add(string.Format("{0} = {1}", enumInt, enumName));
             }
 
             return string.Join(", ", enumDescriptions.ToArray());
