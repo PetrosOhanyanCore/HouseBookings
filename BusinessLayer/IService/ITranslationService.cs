@@ -11,7 +11,7 @@ namespace BusinessLayer.IService
     {
         int SwithLanguage(string language);
 
-        Task<TranslationDTO> GetTranslationtByIdAsync(int id);
+        Task<TranslationDTO> GetTranslationByIdAsync(int id);
         Task<IEnumerable<TranslationDTO>> GetAllTranslationAsync();
 
         Task AddTranslationAsync(TranslationDTO translationDTO);
