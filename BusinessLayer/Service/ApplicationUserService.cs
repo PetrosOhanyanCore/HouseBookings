@@ -3,6 +3,7 @@ using BusinessLayer.IService;
 using DataLayer.IRepository;
 using Entity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -129,6 +130,137 @@ namespace BusinessLayer.Service
         public async Task<ApplicationUser> GetById(string id)
         {
             return _userManager.Users.Include(i => i.Client).FirstOrDefault(x => x.Id == id);
+        }
+
+
+
+
+
+
+
+
+
+
+        public async Task<UserManagerResponse> LoginUserAsync(LoginModel model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null || !user.IsActive)
+            {
+                return new UserManagerResponse
+                {
+                    Message = "InvalidUser",
+                    IsSuccess = false
+                };
+            }
+
+            if (!user.EmailConfirmed)
+            {
+                return new UserManagerResponse
+                {
+                    Message = "ActivateEmail",
+                    IsSuccess = false
+                };
+            }
+
+            var result = await _userManager.CheckPasswordAsync(user, model.Password);
+
+            if (!result)
+            {
+                return new UserManagerResponse
+                {
+                    Message = "PasswordInvalid",
+                    IsSuccess = false
+                };
+            }
+
+            #region NotNeed
+
+            //var jwt = _jwtHandler.Create(user.UserName);
+            //var refreshToken = _passwordHasher.HashPassword(user, Guid.NewGuid().ToString())
+            //    .Replace("+", string.Empty)
+            //    .Replace("=", string.Empty)
+            //    .Replace("/", string.Empty);
+            //jwt.RefreshToken = refreshToken;
+            //_refreshTokens.Add(new RefreshToken { Username = username, Token = refreshToken });
+
+            //var claims = new[]
+            //{
+            //    new Claim("Email", model.Email),
+            //    new Claim(ClaimTypes.NameIdentifier, user.Id),
+            //};
+
+            //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+
+            //var token = new JwtSecurityToken(
+            //    issuer: _configuration["Jwt:Issuer"],
+            //    audience: _configuration["Jwt:Issuer"],
+            //    claims: claims,
+            //    expires: DateTime.Now.AddDays(30),
+            //    signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
+
+            //string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            #endregion
+
+            string token = generateJwtToken(user);
+
+            return new UserManagerResponse
+            {
+                Message = token,
+                IsSuccess = true,
+            };
+        }
+
+        public async Task<UserManagerResponse> RegisterUserAsync(RegisterModel model)
+        {
+            if (model == null)
+                throw new NullReferenceException("NotFound");
+
+            if (model.Password != model.ConfirmPassword)
+                return new UserManagerResponse
+                {
+                    Message = "PasswordMissMatch",
+                    IsSuccess = false
+                };
+
+
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                IsActive = true,
+                CreatedDate = DateTime.Now,
+                AccessToken = Guid.NewGuid().ToString()
+                                            .Replace("+", string.Empty)
+                                            .Replace("=", string.Empty)
+                                            .Replace("/", string.Empty)
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                var confirmEmailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                var encodedEmailToken = Encoding.UTF8.GetBytes(confirmEmailToken);
+                var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
+
+                return new UserManagerResponse
+                {
+                    Message = "User created successfully!",
+                    IsSuccess = true,
+                };
+            }
+
+            return new UserManagerResponse
+            {
+                Message = "SomethingWrong",
+                IsSuccess = false,
+                Errors = result.Errors.Select(e => e.Description)
+            };
         }
     }
 }

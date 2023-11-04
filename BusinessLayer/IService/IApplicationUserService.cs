@@ -25,5 +25,13 @@ namespace BusinessLayer.IService
         void CreateApplicationUserAsync(ApplicationUserDTO applicationUserDTO);
         void UpdateApplicationUserAsync(ApplicationUserDTO applicationUserDTO);
         void DeleteApplicationUserAsync(ApplicationUserDTO applicationUserDTO);
+
+
+
+
+
+        Task<UserManagerResponse> LoginUserAsync(LoginModel model);
+        Task<UserManagerResponse> RegisterUserAsync(RegisterModel model);
+
     }
 }
