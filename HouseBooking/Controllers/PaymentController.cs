@@ -14,76 +14,110 @@ namespace HouseBooking.Controllers
     {
         private readonly IPaymentService _paymentService;
 
-        public PaymentController(IPaymentService paymentService, IMapper mapper)
+        public PaymentController(IPaymentService paymentService)
         {
             _paymentService = paymentService;
-
         }
 
         [HttpPost]
         public async Task<IActionResult> AddPayment([FromBody] PaymentDTO paymentDTO)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
-            }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            await _paymentService.AddPaymentAsync(paymentDTO);
-            return Ok("Payment added successfully");
+                await _paymentService.AddPaymentAsync(paymentDTO);
+                return Ok("Payment added successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllPayments()
         {
-            var payments = await _paymentService.GetAllPaymentsAsync();
-            return Ok(payments);
+            try
+            {
+                var payments = await _paymentService.GetAllPaymentsAsync();
+                return Ok(payments);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPaymentById(int id)
         {
-            var payment = await _paymentService.GetPaymentByIdAsync(id);
-
-            if (payment == null)
+            try
             {
-                return NotFound("Payment not found");
+                var payment = await _paymentService.GetPaymentByIdAsync(id);
+
+                if (payment == null)
+                {
+                    return NotFound("Payment not found");
+                }
+
+                return Ok(payment);
             }
-
-
-            return Ok(payment);
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePayment(int id, [FromBody] PaymentDTO paymentDTO)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var existingPayment = await _paymentService.GetPaymentByIdAsync(id);
+
+                if (existingPayment == null)
+                {
+                    return NotFound("Payment not found");
+                }
+
+                await _paymentService.UpdatePaymentAsync(paymentDTO);
+                return Ok("Payment updated successfully");
             }
-
-            var existingPayment = await _paymentService.GetPaymentByIdAsync(id);
-
-            if (existingPayment == null)
+            catch (Exception ex)
             {
-                return NotFound("Payment not found");
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
-
-            await _paymentService.UpdatePaymentAsync(paymentDTO);
-            return Ok("Payment updated successfully");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePayment(int id)
         {
-            var existingPayment = await _paymentService.GetPaymentByIdAsync(id);
-
-            if (existingPayment == null)
+            try
             {
-                return NotFound("Payment not found");
-            }
+                var existingPayment = await _paymentService.GetPaymentByIdAsync(id);
 
-            await _paymentService.RemovePaymentAsync(id);
-            return Ok("Payment deleted successfully");
+                if (existingPayment == null)
+                {
+                    return NotFound("Payment not found");
+                }
+
+                await _paymentService.RemovePaymentAsync(id);
+                return Ok("Payment deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
+            }
         }
     }
+
 }
