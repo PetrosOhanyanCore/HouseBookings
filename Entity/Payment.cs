@@ -8,7 +8,7 @@ namespace Entity
 
         public decimal? Amount { get; set; }
 
-        public Currency CurrencyCode { get; set; }
+        public Currencies Code { get; set; }
 
         public int CardNumber { get; set; }
 
@@ -30,12 +30,12 @@ namespace Entity
         public Booking Booking { get; set; }
     }
 
-    public enum Currency
+    public enum Currencies
     {
-        USD, // Dollar USA
-        EUR, // Euro
-        GBP, // Pound-Sterling
-        JPY, // Japan Iyen
+        USD = 1, // Dollar USA
+        EUR = 2, // Euro
+        GBP = 3, // Pound-Sterling
+        JPY = 4 // Japan Iyen
              // others
     }
 }

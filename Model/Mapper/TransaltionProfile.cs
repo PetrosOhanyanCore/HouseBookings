@@ -12,8 +12,8 @@ namespace Model.Mapper
     {
         public TransaltionProfile()
         {
+            CreateMap<Translation, TranslationDTO>();
             CreateMap<TranslationDTO, Translation>();
-            CreateMap<TranslationDTO, TranslationDTO>();
         }
     }
 }

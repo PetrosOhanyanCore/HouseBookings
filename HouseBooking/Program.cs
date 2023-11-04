@@ -5,6 +5,7 @@ using DataLayer.Repository;
 using BusinessLayer.IService;
 using BusinessLayer.Service;
 using HouseBooking.Extansions;
+using HouseBooking.Middleware;
 using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +35,7 @@ builder.Services.AddScoped<ITranslationRepository, TranslationRepository>();
 
 builder.Services.AddTransient<IApartmentService, ApartmentService>();
 builder.Services.AddTransient<IAddressService, AddressService>();
-builder.Services.AddScoped<IScoringService, ScoringService>();
+builder.Services.AddTransient<IScoringService, ScoringService>();
 builder.Services.AddTransient<IOptionsService, OptionsService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
@@ -43,7 +44,7 @@ builder.Services.AddTransient<IBuildingService, BuildingService>();
 builder.Services.AddTransient<IApartmentImageService, ApartmentImageService>();
 builder.Services.AddTransient<IBuildingImageService, BuildingImageService>();
 builder.Services.AddTransient<IBookingService, BookingService>();
-builder.Services.AddScoped<ITranslationService, TranslationService>();
+builder.Services.AddTransient<ITranslationService, TranslationService>();
 
 
 
@@ -54,7 +55,7 @@ builder.Services.AddIdentityServer();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerServices();
 
 
 var app = builder.Build();
@@ -89,6 +90,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
+app.UseMiddleware<TokenManagerMiddleware>();
 
 app.MapControllers();
 

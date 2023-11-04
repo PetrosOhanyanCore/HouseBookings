@@ -27,7 +27,7 @@ namespace HouseBooking.Controllers
             return Ok("Client created successfully");
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetClientAsync/{id}")]
         public async Task<IActionResult> GetClientAsync(int id)
         {
             var client = await _clientService.GetClientAsync(id);
@@ -40,7 +40,7 @@ namespace HouseBooking.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet("GetAllClientAsync")]
         public async Task<IActionResult> GetAllClientAsync()
         {
             var clients = await _clientService.GetAllClientAsync();
@@ -52,8 +52,8 @@ namespace HouseBooking.Controllers
             return NotFound();
 
         }
-        [HttpPut]
-        public async Task<IActionResult> PutClientAsync([FromBody] ClientDTO client) 
+        [HttpPut("PutClientAsync")]
+        public async Task<IActionResult> PutClientAsync([FromBody] ClientDTO client)
         {
             if (client == null)
                 return BadRequest("Invalid client data.");
@@ -65,8 +65,8 @@ namespace HouseBooking.Controllers
             return Ok("Client updated successfully");
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteClientAsync([FromBody] ClientDTO client) 
+        [HttpDelete("DeleteClientAsync")]
+        public async Task<IActionResult> DeleteClientAsync([FromBody] ClientDTO client)
         {
             if (client == null)
                 return BadRequest("Invalid client data.");
@@ -76,7 +76,7 @@ namespace HouseBooking.Controllers
                 return BadRequest(ModelState);
 
             await _clientService.RemoveClientAsync(client);
-            
+
             return Ok("Client deleted successfully");
 
         }

@@ -25,50 +25,31 @@ namespace BusinessLayer.Service
             _mapper = mapper;
         }
 
-        public void AddOptions(OptionsDTO optionsDTO)
+        public Task AddOptionsAsync(OptionsDTO optionsDTO)
         {
-            try
-            {
                 Options options = _mapper.Map<Options>(optionsDTO);
                 _optionsRepository.Add(options);
+                return Task.CompletedTask;
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
         }
-        public void UpdateOptions(OptionsDTO optionsDTO)
+        public Task UpdateOptionsAsync(OptionsDTO optionsDTO)
         {
-            try
-            {
                 Options options = _mapper.Map<Options>(optionsDTO);
                 _optionsRepository.Update(options);
+                return Task.CompletedTask;
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
         }
-        public void RemoveOptions(int id)
+        public Task RemoveOptionsAsync(int id)
         {
-            try
-            {
                 var option = _optionsRepository.Get(id);
                 if (option != null)
                 {
                     _optionsRepository.Remove(option);
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+                return Task.CompletedTask;
+
         }
+        
 
         public async Task<OptionsDTO> GetOptionByIdAsync(int id)
         {

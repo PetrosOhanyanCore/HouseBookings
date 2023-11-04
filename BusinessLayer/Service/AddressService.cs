@@ -23,6 +23,50 @@ namespace BusinessLayer.Service
             this._mapper = mapper;
         }
 
+        public async Task AddAddress(AddressDTO addressDTO)
+        {
+            try
+            {
+                Address address = _mapper.Map<Address>(addressDTO);
+                _addressRepository.Add(address);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+        public async Task UpdateAddress(AddressDTO addressDTO)
+        {
+            try
+            {
+                Address address = _mapper.Map<Address>(addressDTO);
+                _addressRepository.Update(address);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+        public async Task RemoveAddress(int id)
+        {
+            try
+            {
+                var address = _addressRepository.Get(id);
+                if (address != null)
+                {
+                    _addressRepository.Remove(address);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
         public AddressDTO GetBuildingByAddressId(int id)
         {
             var building = _addressRepository.GetBuildingByAddressId(id);

@@ -1,4 +1,6 @@
-﻿using DataLayer.IRepository;
+﻿using DataLayer;
+using DataLayer.IRepository;
+using DataLayer.Repository;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +20,33 @@ namespace DataLayer.Repository
 
         }
 
+        public async Task AddAsync(Translation translation)
+        {
+            await _context.Translations.AddAsync(translation);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Translation>> GetAllAsync()
+        {
+            return await _context.Translations.ToListAsync();
+        }
+
+        public async Task<Translation> GetTranslationtByIdAsync(int id)
+        {
+            var result = await _context.Translations.FirstOrDefaultAsync(i => i.Id == id);
+            return result;
+        }
+
+        public async Task RemoveAsync(Translation translation)
+        {
+            _context.Translations.Remove(translation);
+            await _context.SaveChangesAsync();
+        }
+        public async Task UpdateAsync(Translation translation)
+        {
+            _context.Translations.Update(translation);
+            await _context.SaveChangesAsync();
+        }
         public int SwitchLanguage(string language)
         {
             int languageCode;

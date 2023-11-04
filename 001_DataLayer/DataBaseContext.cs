@@ -27,7 +27,7 @@ namespace DataLayer
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Building> Buildings { get; set; }
-        public DbSet<ApartmentImage> Images { get; set; }
+        public DbSet<ApartmentImage> ApartmentImages { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BuildingImage> BuildingImages { get; set; }
 
@@ -36,7 +36,6 @@ namespace DataLayer
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new ImageEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ApartmentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ScoringEntityConfiguration());
@@ -46,9 +45,9 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentEntityConfiguartion());
             modelBuilder.ApplyConfiguration(new ImageEntityConfiguration());
-           /* modelBuilder.ApplyConfiguration(new BookingEntityConfiguration());*/
             modelBuilder.ApplyConfiguration(new ClientEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BuildingImageEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new BookingEntitiyConfiguration());
 
         }
     }

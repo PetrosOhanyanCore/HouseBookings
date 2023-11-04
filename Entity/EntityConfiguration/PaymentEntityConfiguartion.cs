@@ -18,11 +18,11 @@ namespace Entity.EntityConfiguration
             builder.Property(p => p.BookingId)
               .IsRequired();
 
-            builder.Property(p => p.CurrencyCode)
+            builder.Property(p => p.Code)
               .IsRequired()
               .HasConversion(
                    v => v.ToString(),
-                   v => (Currency)Enum.Parse(typeof(Currency), v)
+                   v => (Currencies)Enum.Parse(typeof(Currencies), v)
                ); // Convert Enum to string and back
 
             builder.HasOne(p => p.Booking)

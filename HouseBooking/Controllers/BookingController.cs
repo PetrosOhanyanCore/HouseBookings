@@ -18,7 +18,7 @@ namespace HouseBooking.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("GetBookingAsync/{id}")]
         public async Task<BookingDTO> GetBookingAsync(int id)
         {
             var result = await _service.GetBookingAsync(id);
@@ -26,20 +26,20 @@ namespace HouseBooking.Controllers
         }
 
 
-        [HttpGet("{buildingId}")]
+        [HttpGet("GetAllBooking/{buildingId}")]
         public IEnumerable<BookingDTO> GetAllBooking(int buildingId)
         {
             return _service.GetAllBooking(buildingId);
         }
 
-        [HttpGet("{endTime}")]
+        [HttpGet("GetAllBookingsInEndTimeAsync/{endTime}")]
         public async Task<IEnumerable<BookingDTO>> GetAllBookingsInEndTimeAsync(DateTime endTime)
         {
             var result = await _service.GetAllBookingsInEndTimeAsync(endTime);
             return result;
         }
 
-        [HttpGet("{canceledTime}")]
+        [HttpGet("GetAllBookingsInCanceledAsync/{canceledTime}")]
         public Task<IEnumerable<BookingDTO>> GetAllBookingsInCanceledAsync(DateTime canceledTime)
         {
             return _service.GetAllBookingsInCanceledAsync(canceledTime);
