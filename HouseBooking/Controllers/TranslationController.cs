@@ -1,11 +1,12 @@
 ﻿using BusinessLayer.IService;
 using BusinessLayer.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
 namespace HouseBooking.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/{action}")]
     [ApiController]
     public class TranslationController : ControllerBase
     {
@@ -38,7 +39,8 @@ namespace HouseBooking.Controllers
             return await _translationService.GetTranslationByIdAsync(id);
         }
 
-        [HttpPost("AddTranslationAsync")]
+        [Authorize]
+        [HttpPost]
         public async Task AddTranslationAsync(TranslationDTO translationDTO)
         {
             await _translationService.AddTranslationAsync(translationDTO);

@@ -7,6 +7,7 @@ using BusinessLayer.Service;
 using HouseBooking.Extansions;
 using HouseBooking.Middleware;
 using Microsoft.AspNetCore.Builder;
+using HouseBooking.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +73,7 @@ routeBuilder.MapRoute("{controller}/{action}", async context =>
     await context.Response.WriteAsync("{controller}/{action} template");
 });
 
+app.UseCors("app-cors-policy");
 app.UseRouting();
 
 
@@ -89,9 +91,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+
 app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseMiddleware<TokenManagerMiddleware>();
+//app.UseMiddleware<HttpGlobalExceptionFilter>();
 
 app.MapControllers();
 

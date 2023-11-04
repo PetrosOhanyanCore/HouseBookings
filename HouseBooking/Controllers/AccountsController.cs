@@ -13,6 +13,7 @@ namespace HouseBooking.Controllers
     {
         private readonly IApplicationUserService _userService;
         private readonly string controller = "Accounts";
+        //TODO: Add logging
 
 
         public AccountsController(IApplicationUserService userService)

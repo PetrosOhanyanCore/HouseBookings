@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.IService;
 using Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -14,7 +15,10 @@ namespace HouseBooking.Controllers
         {
             _apartmentService = service;
         }
+
+
         [HttpPost("AddApartment")]
+        [Authorize]
         public IActionResult AddApartment([FromBody] ApartmentDTO apartment)
         {
             try

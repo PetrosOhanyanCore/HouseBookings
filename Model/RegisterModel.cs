@@ -20,6 +20,7 @@ namespace Model
 
         [Required]
         [StringLength(50, MinimumLength = 8)]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]
