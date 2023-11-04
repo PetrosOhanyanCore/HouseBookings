@@ -1,18 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLayer.IService;
 using DataLayer.IRepository;
-using AutoMapper;
-using BusinessLayer.IService;
-using DataLayer.IRepository;
 using Entity;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataLayer.Repository;
-using System.Linq.Expressions;
 
 namespace BusinessLayer.Service
 {

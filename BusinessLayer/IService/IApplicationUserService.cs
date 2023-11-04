@@ -21,8 +21,17 @@ namespace BusinessLayer.IService
         Task<ApplicationUserDTO> GetApplicationUserInPhoneNumberAsync(string phoneNumber);
         Task<IEnumerable<ApplicationUserDTO>> GetAllApplicationUSersByAccesTokenAsync(string accesToken);
         Task<IEnumerable<ApplicationUserDTO>> GetAllApplicationUsersByBirthDateAsync(DateTime birthDate);
+        Task<ApplicationUser> GetById(string id);
         void CreateApplicationUserAsync(ApplicationUserDTO applicationUserDTO);
         void UpdateApplicationUserAsync(ApplicationUserDTO applicationUserDTO);
         void DeleteApplicationUserAsync(ApplicationUserDTO applicationUserDTO);
+
+
+
+
+
+        Task<UserManagerResponse> LoginUserAsync(LoginModel model);
+        Task<UserManagerResponse> RegisterUserAsync(RegisterModel model);
+
     }
 }

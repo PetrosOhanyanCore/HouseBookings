@@ -5,6 +5,7 @@ using DataLayer.Repository;
 using BusinessLayer.IService;
 using BusinessLayer.Service;
 using HouseBooking.Extansions;
+using HouseBooking.Middleware;
 using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,7 +55,7 @@ builder.Services.AddIdentityServer();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerServices();
 
 
 var app = builder.Build();
@@ -89,6 +90,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
+app.UseMiddleware<TokenManagerMiddleware>();
 
 app.MapControllers();
 

@@ -44,7 +44,7 @@ namespace DataLayer
             modelBuilder.ApplyConfiguration(new TranslationEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BuildingEntityConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentEntityConfiguartion());
-            modelBuilder.ApplyConfiguration(new ImageEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ApartmentImageEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ClientEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BuildingImageEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BookingEntitiyConfiguration());

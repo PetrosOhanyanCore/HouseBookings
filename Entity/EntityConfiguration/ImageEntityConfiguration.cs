@@ -11,7 +11,7 @@ namespace Entity.EntityConfiguration
     
 {
     //Apartment
-    public class ImageEntityConfiguration : IEntityTypeConfiguration<ApartmentImage>
+    public class ApartmentImageEntityConfiguration : IEntityTypeConfiguration<ApartmentImage>
     {
         public void Configure(EntityTypeBuilder<ApartmentImage> builder)
         {

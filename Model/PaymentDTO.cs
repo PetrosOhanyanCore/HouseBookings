@@ -10,7 +10,7 @@ namespace Model
 
         public decimal? Amount { get; set; }
 
-        public Currency CurrencyCode { get; set; }
+        public Currencies CurrencyCode { get; set; }
 
         public string CardNumber { get; set; }
 
