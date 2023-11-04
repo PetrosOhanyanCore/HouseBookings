@@ -15,6 +15,7 @@ namespace HouseBooking.Controllers
             this._translationService = translationService;
         }
 
+
         [HttpGet("SwithLanguage")]
         public IActionResult SwithLanguage(string language)
         {
@@ -26,6 +27,34 @@ namespace HouseBooking.Controllers
             }
             return NotFound(language);
         }
+        [HttpGet("GetAllTranslationAsync")]
+        public async Task<IEnumerable<TranslationDTO>> GetAllTranslationAsync()
+        {
+            return await _translationService.GetAllTranslationAsync();
+        }
+        [HttpGet("GetTranslationByIdAsync/{id}")]
+        public async Task<TranslationDTO> GetTranslationByIdAsync(int id)
+        {
+            return await _translationService.GetTranslationByIdAsync(id);
+        }
+
+        [HttpPost("AddTranslationAsync")]
+        public async Task AddTranslationAsync(TranslationDTO translationDTO)
+        {
+            await _translationService.AddTranslationAsync(translationDTO);
+        }
+
+        [HttpDelete("RemoveTranslationAsync/{id}")]
+        public async Task RemoveTranslationAsync(int id)
+        {
+            await _translationService.RemoveTranslationAsync(id);
+        }
+        [HttpPut("UpdateTranslationAsync")]
+        public async Task UpdateTranslationAsync(TranslationDTO translationDTO)
+        {
+            await _translationService.UpdateTranslationAsync(translationDTO);
+        }
+
     }
 }
 
