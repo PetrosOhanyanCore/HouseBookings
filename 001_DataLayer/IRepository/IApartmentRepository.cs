@@ -184,24 +184,6 @@ namespace DataLayer.IRepository
         /// <param name="optionName">The name of the option.</param>
         /// <returns>A collection of apartments with the specified option.</returns>
         Task<IEnumerable<Apartment>> GetApartmentsWithOptionAsync(string optionName);
-        /// <summary>
-        /// Get apartments with a specific scoring asynchronously.
-        /// </summary>
-        /// <param name="scoringName">The name of the scoring.</param>
-        /// <returns>A collection of apartments with the specified scoring.</returns>
-        Task<IEnumerable<Apartment>> GetApartmentsWithScoringAsync(string scoringName);
-        /// <summary>
-        /// Get the total number of bookings for an apartment asynchronously.
-        /// </summary>
-        /// <param name="apartmentId">The ID of the apartment.</param>
-        /// <returns>The total number of bookings for the apartment.</returns>
-        Task<int> GetTotalBookingsCountAsync(int apartmentId);
-        /// <summary>
-        /// Get the total number of images for an apartment asynchronously.
-        /// </summary>
-        /// <param name="apartmentId">The ID of the apartment.</param>
-        /// <returns>The total number of images for the apartment.</returns>
-        Task<int> GetTotalImagesCountAsync(int apartmentId);
 
     }
 }
