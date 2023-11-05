@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20231104092520_init_2")]
-    partial class init_2
+    [Migration("20231105210749_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,7 +164,7 @@ namespace DataLayer.Migrations
 
                     b.HasAlternateKey("ApartmentId");
 
-                    b.ToTable("Image", (string)null);
+                    b.ToTable("ApartmentImage", (string)null);
                 });
 
             modelBuilder.Entity("Entity.ApplicationUser", b =>
