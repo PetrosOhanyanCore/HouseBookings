@@ -496,47 +496,6 @@ namespace HouseBooking.Controllers
             }
         }
 
-        [HttpGet("Scoring/{ScoringName}/Async")]
-        public async Task<IActionResult> GetApartmentsWithScoringAsync(string scoringName)
-        {
-            try
-            {
-                var apartments = await _apartmentService.GetApartmentsWithScoringAsync(scoringName);
-                return Ok(apartments);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("Bookings/Count/{ApartmentId}/Async")]
-        public async Task<IActionResult> GetTotalBookingsCountAsync(int apartmentId)
-        {
-            try
-            {
-                var totalCount = await _apartmentService.GetTotalBookingsCountAsync(apartmentId);
-                return Ok(totalCount);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("Images/Count/{ApartmentId}/Async")]
-        public async Task<IActionResult> GetTotalImagesCountAsync(int apartmentId)
-        {
-            try
-            {
-                var totalCount = await _apartmentService.GetTotalImagesCountAsync(apartmentId);
-                return Ok(totalCount);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
 
     }
 }
