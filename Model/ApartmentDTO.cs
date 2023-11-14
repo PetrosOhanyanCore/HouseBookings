@@ -14,11 +14,11 @@ namespace Model
         public int RoomsCount { get; set; }
         public int Bathrooms { get; set; }
         public double SquareMeter { get; set; }
-        public AddressDTO Location { get; set; }
+        //public AddressDTO Location { get; set; }
         public bool IsAvailable { get; set; }
 
 
-        public BuildingDTO Building { get; set; }
+        //public BuildingDTO Building { get; set; }
         public string Section { get; set; }
         public string Number { get; set; }
 
@@ -34,9 +34,9 @@ namespace Model
         public bool IsKitchenAttached { get; set; }
         public int BalconyCount { get; set; }
 
-        public ICollection<ApartmentImageDTO> Images { get; set; }
-        public ICollection<BookingDTO> Bookings { get; set; }
-        public ICollection<OptionsDTO> Options { get; set; }
-        public ICollection<ScoringDTO> Scorings { get; set; }
+        //public ICollection<ApartmentImageDTO> Images { get; set; }
+        //public ICollection<BookingDTO> Bookings { get; set; }
+        //public ICollection<OptionsDTO> Options { get; set; }
+        //public ICollection<ScoringDTO> Scorings { get; set; }
     }
 }

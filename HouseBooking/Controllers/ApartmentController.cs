@@ -6,8 +6,11 @@ using Model;
 
 namespace HouseBooking.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
+    [Produces("application/json")]
+    [Consumes("application/json")]
     [ApiController]
+    [Authorize]
     public class ApartmentController : ControllerBase
     {
         private readonly IApartmentService _apartmentService;
@@ -17,8 +20,8 @@ namespace HouseBooking.Controllers
         }
 
 
-        [HttpPost("AddApartment")]
-        [Authorize]
+        [HttpPost]
+        //[AllowAnonymous]
         public IActionResult AddApartment([FromBody] ApartmentDTO apartment)
         {
             try

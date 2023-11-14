@@ -2,9 +2,12 @@
 using DataLayer;
 using Entity;
 using HouseBooking.Filters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Model.Mapper;
+using System.Text;
 
 namespace HouseBooking.Extansions
 {
@@ -66,6 +69,32 @@ namespace HouseBooking.Extansions
                 
 
                 c.DocumentFilter<SwaggerAddEnumDescriptionsFilter>();
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddAuthenticationServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication(auth =>
+            {
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = Convert.ToBoolean(configuration["Jwt:ValidateLifetime"]),
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
+                    RequireExpirationTime = true,
+                    RequireSignedTokens = true,
+                };
+                options.RequireHttpsMetadata = true;
+                options.SaveToken = true;
+                options.ClaimsIssuer = configuration["Jwt:Issuer"];
             });
 
             return services;

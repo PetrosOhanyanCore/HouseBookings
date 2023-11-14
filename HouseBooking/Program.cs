@@ -8,6 +8,7 @@ using HouseBooking.Extansions;
 using HouseBooking.Middleware;
 using Microsoft.AspNetCore.Builder;
 using HouseBooking.Filters;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,14 +49,15 @@ builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<ITranslationService, TranslationService>();
 
 
-
+var configValue = builder.Configuration;
 builder.Services.AddAutoMapperService();
 builder.Services.AddIdentityServer();
+builder.Services.AddAuthenticationServices(configValue);
 
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerServices();
 
 
@@ -63,15 +65,15 @@ var app = builder.Build();
 
 var routeBuilder = new RouteBuilder(app);
 
-routeBuilder.MapRoute("controller", async context =>
-{
-    await context.Response.WriteAsync("{controller} template");
-});
+//routeBuilder.MapRoute("controller", async context =>
+//{
+//    await context.Response.WriteAsync("{controller} template");
+//});
 
-routeBuilder.MapRoute("{controller}/{action}", async context =>
-{
-    await context.Response.WriteAsync("{controller}/{action} template");
-});
+//routeBuilder.MapRoute("{controller}/{action}", async context =>
+//{
+//    await context.Response.WriteAsync("{controller}/{action} template");
+//});
 
 app.UseCors("app-cors-policy");
 app.UseRouting();
@@ -79,20 +81,20 @@ app.UseRouting();
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("v1/swagger.json", "House Booking");
-    });
-}
+    c.SwaggerEndpoint("v1/swagger.json", "House Booking");
+});
+//}
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 
-app.UseAuthentication();
+//app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<TokenManagerMiddleware>();
