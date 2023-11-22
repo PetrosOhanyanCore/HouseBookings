@@ -71,9 +71,11 @@ namespace DataLayer.Repository
 
             return apartments;
         }
-        public Task<IEnumerable<Apartment>> GetApartmentsByFloorAsync(int floor)
+        public async Task<IEnumerable<Apartment>> GetApartmentsByFloorAsync(int floor)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.Floor == floor)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Apartment>> GetApartmentsByFloorCountAsync(int floorCount)
@@ -112,54 +114,68 @@ namespace DataLayer.Repository
         }
 
         
-        public Task<IEnumerable<Apartment>> GetApartmentsByNumberAsync(string number)
+        public  async Task<IEnumerable<Apartment>> GetApartmentsByNumberAsync(string number)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.Number == number)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
+        public async Task<IEnumerable<Apartment>> GetApartmentsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.Price >= minPrice && a.Price <= maxPrice)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsByRoomsCountAsync(int roomsCount)
+        public async Task<IEnumerable<Apartment>> GetApartmentsByRoomsCountAsync(int roomsCount)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a=> a.RoomsCount == roomsCount)
+                .ToArrayAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsBySectionAsync(string section)
+        public async Task<IEnumerable<Apartment>> GetApartmentsBySectionAsync(string section)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.Section == section)
+                .ToArrayAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsByTranslationIdAsync(int translationId)
+        public async Task<IEnumerable<Apartment>> GetApartmentsByTranslationIdAsync(int translationId)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.TranslationId == translationId)
+                .ToArrayAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsWithAttachedKitchenAsync()
+        public async Task<IEnumerable<Apartment>> GetApartmentsWithAttachedKitchenAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.IsKitchenAttached)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsWithOptionAsync(string optionName)
+        public async Task<IEnumerable<Apartment>> GetApartmentsWithOptionAsync(string optionName)
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.Options.Any(o => o.Discription == optionName))
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsWithParkingSpaceAsync()
+        public async Task<IEnumerable<Apartment>> GetApartmentsWithParkingSpaceAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.IsParkingSpaceExist  == true)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetApartmentsWithScoringAsync(string scoringName)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IEnumerable<Apartment>> GetAvailableApartmentsAsync()
+        public async Task<IEnumerable<Apartment>> GetAvailableApartmentsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Apartments.
+                Where(a => a.IsAvailable == true)
+                .ToListAsync();
         }
 
         public  async Task<ICollection<ApartmentImage>> GetImagesAsync(int apartmentId)
@@ -175,29 +191,26 @@ namespace DataLayer.Repository
             return images;
         }
 
-        public Task<IEnumerable<Apartment>> GetPenthouseApartmentsAsync()
+        public async Task<IEnumerable<Apartment>> GetPenthouseApartmentsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Apartments
+                .Where(a => a.IsPentHouse == true)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<Apartment>> GetStudioApartmentsAsync()
+        public async Task<IEnumerable<Apartment>> GetStudioApartmentsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Apartments.
+                Where(a => a.IsStudio == true)
+                .ToListAsync();
         }
 
-        public Task<int> GetTotalBookingsCountAsync(int apartmentId)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<int> GetTotalImagesCountAsync(int apartmentId)
+        public async Task<IEnumerable<Apartment>> GetTownhouseApartmentsAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Apartment>> GetTownhouseApartmentsAsync()
-        {
-            throw new NotImplementedException();
+            return await _context.Apartments.
+                Where(a => a.IsTownHouse == true)
+                .ToListAsync();
         }
 
         public int ImagesCountByImageId(int id)

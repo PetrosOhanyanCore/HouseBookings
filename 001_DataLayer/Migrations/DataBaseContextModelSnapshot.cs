@@ -162,7 +162,7 @@ namespace DataLayer.Migrations
 
                     b.HasAlternateKey("ApartmentId");
 
-                    b.ToTable("Image", (string)null);
+                    b.ToTable("ApartmentImage", (string)null);
                 });
 
             modelBuilder.Entity("Entity.ApplicationUser", b =>

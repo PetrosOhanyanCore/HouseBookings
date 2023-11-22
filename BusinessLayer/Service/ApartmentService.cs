@@ -151,11 +151,7 @@ namespace BusinessLayer.Service
             return _mapper.Map<IEnumerable<ApartmentDTO>>(apartments);
         }
 
-        public async Task<IEnumerable<ApartmentDTO>> GetApartmentsWithScoringAsync(string scoringName)
-        {
-            var apartments = await _apartmentRepository.GetApartmentsWithScoringAsync(scoringName);
-            return _mapper.Map<IEnumerable<ApartmentDTO>>(apartments);
-        }
+   
 
         public async Task<IEnumerable<ApartmentDTO>> GetAvailableApartmentsAsync()
         {
@@ -180,18 +176,9 @@ namespace BusinessLayer.Service
             var apartments = await _apartmentRepository.GetStudioApartmentsAsync();
             return _mapper.Map<IEnumerable<ApartmentDTO>>(apartments);
         }
-        public async Task<int> GetTotalBookingsCountAsync(int apartmentId)
-        {
-            var totalBookingsCount = await _apartmentRepository.GetTotalBookingsCountAsync(apartmentId);
-            return totalBookingsCount;
-        }
+      
 
-        public async Task<int> GetTotalImagesCountAsync(int apartmentId)
-        {
-            var totalImagesCount = await _apartmentRepository.GetTotalImagesCountAsync(apartmentId);
-            return totalImagesCount;
-        }
-
+     
         public async Task<IEnumerable<ApartmentDTO>> GetTownhouseApartmentsAsync()
         {
             var apartments = await _apartmentRepository.GetTownhouseApartmentsAsync();

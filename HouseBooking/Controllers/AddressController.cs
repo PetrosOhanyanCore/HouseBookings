@@ -76,8 +76,8 @@ namespace HouseBooking.Controllers
             return result;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddressDTO address)
+        [HttpPost("/Address/Add")]
+        public async Task<IActionResult> Add([FromBody] AddressDTO address)
         {
             await _addressService.AddAddress(address);
             return Ok();

@@ -38,9 +38,7 @@ namespace BusinessLayer.IService
         Task<IEnumerable<ApartmentDTO>> GetApartmentsByBalconyCountAsync(int count);
         Task<bool> IsApartmentAvailableAsync(int apartmentId);
         Task<IEnumerable<ApartmentDTO>> GetApartmentsWithOptionAsync(string optionName);
-        Task<IEnumerable<ApartmentDTO>> GetApartmentsWithScoringAsync(string scoringName);
-        Task<int> GetTotalBookingsCountAsync(int apartmentId);
-        Task<int> GetTotalImagesCountAsync(int apartmentId);
+
 
 
     }

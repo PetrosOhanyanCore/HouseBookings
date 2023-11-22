@@ -15,7 +15,7 @@ namespace Entity.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<ApartmentImage> builder)
         {
-            builder.ToTable("Image");
+            builder.ToTable("ApartmentImage");
             builder.HasKey(c => c.Id);
             builder.HasAlternateKey(c => c.ApartmentId);
             builder.Property(c => c.ImageName).HasMaxLength(50);

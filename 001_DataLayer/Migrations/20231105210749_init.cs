@@ -340,6 +340,27 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ApartmentImage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ApartmentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApartmentImage", x => x.Id);
+                    table.UniqueConstraint("AK_ApartmentImage_ApartmentId", x => x.ApartmentId);
+                    table.ForeignKey(
+                        name: "FK_ApartmentImage_Apartment_ApartmentId",
+                        column: x => x.ApartmentId,
+                        principalTable: "Apartment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Booking",
                 columns: table => new
                 {
@@ -373,27 +394,6 @@ namespace DataLayer.Migrations
                         column: x => x.DescriptionId,
                         principalTable: "Translation",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Image",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    ApartmentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Image", x => x.Id);
-                    table.UniqueConstraint("AK_Image_ApartmentId", x => x.ApartmentId);
-                    table.ForeignKey(
-                        name: "FK_Image_Apartment_ApartmentId",
-                        column: x => x.ApartmentId,
-                        principalTable: "Apartment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -648,6 +648,9 @@ namespace DataLayer.Migrations
                 table: "Apartment");
 
             migrationBuilder.DropTable(
+                name: "ApartmentImage");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -664,9 +667,6 @@ namespace DataLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "BuildingImage");
-
-            migrationBuilder.DropTable(
-                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "Options");
