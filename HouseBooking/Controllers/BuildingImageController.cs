@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -19,7 +20,7 @@ namespace HouseBooking.Controllers
         [HttpGet("GetBuildingImageByIdAsync/{id}")]
         public async Task<BuildingImageDTO> GetBuildingImageByIdAsync(int id)
         {
-           var result = await _service.GetBuildingImageByIdAsync(id);
+            var result = await _service.GetBuildingImageByIdAsync(id);
             return result;
         }
 
@@ -31,6 +32,8 @@ namespace HouseBooking.Controllers
 
 
         [HttpPost("AddBuildingImage/{buildingImageDTO}")]
+        //[Authorize(Roles = "Admin, User")]
+
         public void AddBuildingImage(BuildingImageDTO buildingImageDTO)
         {
             _service.AddBuildingImage(buildingImageDTO);
@@ -41,14 +44,14 @@ namespace HouseBooking.Controllers
         public void AddRangeBuildingImages(ICollection<BuildingImageDTO> buildingImageDTOs)
         {
             _service.AddRangeBuildingImages(buildingImageDTOs);
-           
+
         }
 
 
         [HttpPut("UpdateBuildingImage/{buildingImageDTO}")]
         public void UpdateBuildingImage(BuildingImageDTO buildingImageDTO)
         {
-            _service.UpdateBuildingImage(buildingImageDTO); 
+            _service.UpdateBuildingImage(buildingImageDTO);
         }
 
         [HttpPut("UpdateRangeBuildingImages/{buildingImageDTOs}")]
@@ -60,7 +63,7 @@ namespace HouseBooking.Controllers
         [HttpDelete("RemoveBuildingImage/{buildingImageDTO}")]
         public void RemoveBuildingImage(BuildingImageDTO buildingImageDTO)
         {
-            _service.RemoveBuildingImage(buildingImageDTO); 
+            _service.RemoveBuildingImage(buildingImageDTO);
         }
 
         [HttpDelete("RemoveRangeBuildingImages/{buildingImageDTOs}")]

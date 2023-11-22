@@ -20,6 +20,7 @@ namespace HouseBooking.Extansions
                     mc.AddProfile(new ApplicationUserProfile());
                     mc.AddProfile(new OptionsProfile());
                     mc.AddProfile(new PaymentProfile());
+                    mc.AddProfile(new TransaltionProfile());
                 }
             );
 
@@ -39,6 +40,7 @@ namespace HouseBooking.Extansions
                     c.Password.RequiredLength = 8;
                     c.Password.RequireNonAlphanumeric = true;
                     c.Password.RequireUppercase = true;
+                    
                 })
                 .AddEntityFrameworkStores<DataBaseContext>()
                 .AddSignInManager<SignInManager<ApplicationUser>>()
@@ -63,7 +65,7 @@ namespace HouseBooking.Extansions
                     Scheme = "bearer",
                     BearerFormat = "JWT"
                 });
-                
+
 
                 c.DocumentFilter<SwaggerAddEnumDescriptionsFilter>();
             });

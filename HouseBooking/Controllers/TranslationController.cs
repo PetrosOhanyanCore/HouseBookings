@@ -6,7 +6,7 @@ using Model;
 
 namespace HouseBooking.Controllers
 {
-    [Route("[controller]/{action}")]
+    [Route("[controller]")]
     [ApiController]
     public class TranslationController : ControllerBase
     {
@@ -28,18 +28,19 @@ namespace HouseBooking.Controllers
             }
             return NotFound(language);
         }
+
         [HttpGet("GetAllTranslationAsync")]
         public async Task<IEnumerable<TranslationDTO>> GetAllTranslationAsync()
         {
             return await _translationService.GetAllTranslationAsync();
         }
+
         [HttpGet("GetTranslationByIdAsync/{id}")]
         public async Task<TranslationDTO> GetTranslationByIdAsync(int id)
         {
             return await _translationService.GetTranslationByIdAsync(id);
         }
 
-        [Authorize]
         [HttpPost]
         public async Task AddTranslationAsync(TranslationDTO translationDTO)
         {
@@ -51,6 +52,7 @@ namespace HouseBooking.Controllers
         {
             await _translationService.RemoveTranslationAsync(id);
         }
+
         [HttpPut("UpdateTranslationAsync")]
         public async Task UpdateTranslationAsync(TranslationDTO translationDTO)
         {

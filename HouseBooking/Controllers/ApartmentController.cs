@@ -18,7 +18,6 @@ namespace HouseBooking.Controllers
 
 
         [HttpPost("AddApartment")]
-        [Authorize]
         public IActionResult AddApartment([FromBody] ApartmentDTO apartment)
         {
             try

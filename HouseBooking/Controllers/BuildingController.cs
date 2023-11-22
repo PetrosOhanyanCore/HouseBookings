@@ -7,7 +7,6 @@ using Model;
 
 namespace HouseBooking.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BuildingController : ControllerBase
