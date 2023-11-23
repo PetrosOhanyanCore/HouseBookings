@@ -33,10 +33,7 @@ namespace HouseBooking.Middleware
         /// <returns></returns>
         public async Task Invoke(HttpContext context, IApplicationUserService userService)
         {
-            string token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
-
-           
+            string token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();           
 
             if (!string.IsNullOrEmpty(token) && !AttachUserToContext(context, userService, token))
             {

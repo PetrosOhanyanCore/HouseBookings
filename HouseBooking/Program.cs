@@ -70,7 +70,7 @@ if (app.Environment.IsDevelopment())
 
 
 
-//app.UseMiddleware<TokenManagerMiddleware>();
+app.UseMiddleware<TokenManagerMiddleware>();
 //app.UseMiddleware<HttpGlobalExceptionFilter>();
 
 //app.MapControllerRoute(
