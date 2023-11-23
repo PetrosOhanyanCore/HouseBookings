@@ -6,8 +6,9 @@ using Model;
 
 namespace HouseBooking.Controllers
 {
-    [Route("api/[controller]")]
+    //[Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class ApartmentController : ControllerBase
     {
         private readonly IApartmentService _apartmentService;
@@ -18,6 +19,9 @@ namespace HouseBooking.Controllers
 
 
         [HttpPost("AddApartment")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public IActionResult AddApartment([FromBody] ApartmentDTO apartment)
         {
             try

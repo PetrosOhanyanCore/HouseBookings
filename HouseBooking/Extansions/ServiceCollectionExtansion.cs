@@ -1,9 +1,15 @@
 ﻿using AutoMapper;
+using BusinessLayer.IService;
+using BusinessLayer.Service;
 using DataLayer;
+using DataLayer.IRepository;
+using DataLayer.Repository;
 using Entity;
 using HouseBooking.Filters;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Model;
 using Model.Mapper;
 
 namespace HouseBooking.Extansions
@@ -69,6 +75,50 @@ namespace HouseBooking.Extansions
 
                 c.DocumentFilter<SwaggerAddEnumDescriptionsFilter>();
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddBusinessLogicServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
+
+            services.AddTransient<IApartmentService, ApartmentService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IScoringService, ScoringService>();
+            services.AddTransient<IOptionsService, OptionsService>();
+            services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IApplicationUserService, ApplicationUserService>();
+            services.AddTransient<IClientService, ClientService>();
+            services.AddTransient<IBuildingService, BuildingService>();
+            services.AddTransient<IApartmentImageService, ApartmentImageService>();
+            services.AddTransient<IBuildingImageService, BuildingImageService>();
+            services.AddTransient<IBookingService, BookingService>();
+            services.AddTransient<ITranslationService, TranslationService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddRepositoryServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<DataBaseContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+           );
+
+            // Add services to the container.
+
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IOptionsRepository, OptionsRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IBuildingImageRepository, BuildingImageRepository>();
+            services.AddScoped<IBuildingRepository, BuildingRepository>();
+            services.AddScoped<IScoringRepository, ScoringRepository>();
+            services.AddScoped<IApartmentImageRepository, ApartmentImageRepository>();
+            services.AddScoped<ITranslationRepository, TranslationRepository>();
 
             return services;
         }
