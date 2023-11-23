@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using HouseBooking.Extansions;
 using HouseBooking.Middleware;
 using HouseBooking.Filters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication("Cookies")
-    .AddCookie("Cookies");
 
 builder.Services.AddAuthorization();
 
@@ -20,6 +21,7 @@ options.UseSqlServer(
 
 builder.Services.AddAutoMapperService();
 builder.Services.AddIdentityServer();
+builder.Services.AddAuthenticationServices(builder.Configuration);
 builder.Services.AddRepositoryServices(builder.Configuration);
 builder.Services.AddBusinessLogicServices(builder.Configuration);
 
@@ -65,7 +67,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseMiddleware<TokenManagerMiddleware>();
+
+
+
+//app.UseMiddleware<TokenManagerMiddleware>();
 //app.UseMiddleware<HttpGlobalExceptionFilter>();
 
 //app.MapControllerRoute(

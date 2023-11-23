@@ -6,11 +6,14 @@ using DataLayer.IRepository;
 using DataLayer.Repository;
 using Entity;
 using HouseBooking.Filters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Model;
 using Model.Mapper;
+using System.Text;
 
 namespace HouseBooking.Extansions
 {
@@ -95,6 +98,35 @@ namespace HouseBooking.Extansions
             services.AddTransient<IBuildingImageService, BuildingImageService>();
             services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<ITranslationService, TranslationService>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddAuthenticationServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddAuthentication(auth =>
+            {
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = Convert.ToBoolean(configuration["Jwt:ValidateLifetime"]),
+                    ValidateIssuerSigningKey = true,
+                    //ValidIssuer = Configuration["Jwt:Issuer"],
+                    //ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
+                    //SaveSigninToken = true,
+                    RequireExpirationTime = true,
+                    RequireSignedTokens = true,
+                };
+                options.RequireHttpsMetadata = true;
+                options.SaveToken = true;
+                options.ClaimsIssuer = configuration["Jwt:Issuer"];
+            });
 
             return services;
         }

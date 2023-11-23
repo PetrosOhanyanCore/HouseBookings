@@ -36,21 +36,7 @@ namespace HouseBooking.Middleware
             string token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
 
-            //if (!string.IsNullOrEmpty(token))
-            //{
-            //    bool isValid = AttachUserToContext(context, userService, token);
-
-            //    if (!isValid)
-            //    {
-            //        context.Response.StatusCode = 401;
-            //    }
-            //}
-
-            //await _next(context);
-
-            //return;
-
-            //context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+           
 
             if (!string.IsNullOrEmpty(token) && !AttachUserToContext(context, userService, token))
             {
