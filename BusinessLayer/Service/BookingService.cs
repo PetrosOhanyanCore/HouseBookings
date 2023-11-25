@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLayer.IService;
 using DataLayer.IRepository;
+using DataLayer.Repository;
 using Entity;
 using Model;
 
@@ -15,6 +16,12 @@ namespace BusinessLayer.Service
         {
             _bookingRepository = bookingRepository;
             _mapper = mapper;
+        }
+
+        public void AddBooking(BookingDTO booking)
+        {
+            var bookingEntity = _mapper.Map<Booking>(booking);
+            _bookingRepository.Add(bookingEntity);
         }
 
         public async Task AddBookingAsync(BookingDTO bookingDTO)

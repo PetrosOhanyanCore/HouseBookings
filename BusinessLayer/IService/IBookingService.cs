@@ -10,6 +10,8 @@ namespace BusinessLayer.IService
 {
     public interface IBookingService
     {
+        void AddBooking(BookingDTO booking);
+
         Task<BookingDTO> GetBookingAsync(int id);
         IEnumerable<BookingDTO> GetAllBooking(int buildingId);
         Task<IEnumerable<BookingDTO>> GetAllBookingsInEndTimeAsync(DateTime endTime);
