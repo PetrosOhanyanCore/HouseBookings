@@ -5,11 +5,15 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer.IService;
 using Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HouseBooking.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    [Route("api/payments")]
+    [Route("api/[controller]")]
+    //[Route("api/payments")]
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
@@ -19,7 +23,10 @@ namespace HouseBooking.Controllers
             _paymentService = paymentService;
         }
 
-        [HttpPost]
+        [HttpPost("AddPayment")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> AddPayment([FromBody] PaymentDTO paymentDTO)
         {
             try
@@ -38,7 +45,10 @@ namespace HouseBooking.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetPayments")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> GetAllPayments()
         {
             try
@@ -52,7 +62,10 @@ namespace HouseBooking.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetPayment")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> GetPaymentById(int id)
         {
             try
@@ -72,7 +85,10 @@ namespace HouseBooking.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdatePayment")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> UpdatePayment(int id, [FromBody] PaymentDTO paymentDTO)
         {
             try
@@ -98,7 +114,10 @@ namespace HouseBooking.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeletePayment")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> DeletePayment(int id)
         {
             try
