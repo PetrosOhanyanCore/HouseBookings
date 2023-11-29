@@ -1,4 +1,8 @@
 ﻿using BusinessLayer.IService;
+using BusinessLayer.Service;
+using Entity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -6,15 +10,40 @@ using Model;
 
 namespace HouseBooking.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
+    [Route("api/[controller]")]
     public class BookingController : ControllerBase
     {
-        IBookingService _service;
+        private readonly IBookingService _service;
 
         public BookingController(IBookingService service)
         {
             _service = service;
+        }
+
+        [HttpPost("AddBooking")]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UserManagerResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        public IActionResult AddBooking([FromBody] BookingDTO booking)
+        {
+            try
+            {
+                if (booking == null)
+                    return BadRequest("Invalid data.");
+
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                _service.AddBooking(booking);
+                return Ok("Booking created successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
 
