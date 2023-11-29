@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Model.DTO
 {
-    public class BuildingImageDTO
+    public class ApartmentImageDTO
     {
         public int Id { get; set; }
         public string ImageName { get; set; }
-        public BuildingDTO Building { get; set; }
+        public int ApartmentId { get; set; }
+        public ApartmentDTO ApartmentDTO { get; set; }
+
     }
 }

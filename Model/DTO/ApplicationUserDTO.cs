@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Model.DTO
 {
     public class ApplicationUserDTO
     {
@@ -18,6 +18,6 @@ namespace Model
 
         public string AccessToken { get; set; }
 
-    
+
     }
 }

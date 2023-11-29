@@ -2,7 +2,7 @@
 using BusinessLayer.IService;
 using DataLayer.IRepository;
 using Entity;
-using Model;
+using Model.DTO;
 
 namespace BusinessLayer.Service
 {

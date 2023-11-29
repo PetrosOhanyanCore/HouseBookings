@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entity;
+using Model.DTO;
 
 namespace Model.Mapper
 {

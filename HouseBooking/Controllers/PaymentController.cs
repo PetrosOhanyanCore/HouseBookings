@@ -7,6 +7,7 @@ using BusinessLayer.IService;
 using Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Model.DTO;
 
 namespace HouseBooking.Controllers
 {

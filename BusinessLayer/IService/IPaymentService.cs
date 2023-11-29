@@ -1,5 +1,5 @@
 ﻿using Entity;
-using Model;
+using Model.DTO;
 using System.Linq.Expressions;
 
 namespace BusinessLayer.IService

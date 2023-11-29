@@ -4,7 +4,7 @@ using BusinessLayer.IService;
 using DataLayer.IRepository;
 using DataLayer.Repository;
 using Entity;
-using Model;
+using Model.DTO;
 using Model.Mapper;
 using System.Linq.Expressions;
 

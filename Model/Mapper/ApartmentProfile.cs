@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entity;
+using Model.DTO;
 
 namespace Model.Mapper
 {

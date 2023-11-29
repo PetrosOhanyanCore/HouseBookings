@@ -1,5 +1,4 @@
-﻿
-using Model;
+﻿using Model.DTO;
 
 namespace BusinessLayer.IService
 {

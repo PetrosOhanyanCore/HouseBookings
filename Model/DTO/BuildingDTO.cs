@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Model
+namespace Model.DTO
 {
     public class BuildingDTO
     {
@@ -24,7 +24,7 @@ namespace Model
         public double? ApartmentSquareMin { get; set; }
         public double? ApartmentSquareMax { get; set; }
 
-        public TranslationDTO  Translation { get; set; }
+        public TranslationDTO Translation { get; set; }
         public IEnumerable<ApartmentDTO> Apartments { get; set; }
         public ICollection<OptionsDTO> Options { get; set; }
         public ICollection<ScoringDTO> Scorings { get; set; }

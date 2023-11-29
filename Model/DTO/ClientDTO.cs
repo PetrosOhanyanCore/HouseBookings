@@ -2,7 +2,7 @@
 using Entity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Model
+namespace Model.DTO
 {
     public class ClientDTO
     {

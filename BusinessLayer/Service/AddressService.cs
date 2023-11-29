@@ -4,7 +4,7 @@ using DataLayer.IRepository;
 using DataLayer.Repository;
 using Entity;
 using Microsoft.EntityFrameworkCore;
-using Model;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

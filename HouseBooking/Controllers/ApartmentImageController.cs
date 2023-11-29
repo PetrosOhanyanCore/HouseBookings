@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Microsoft.AspNetCore.Authorization;
+using Model.DTO;
 
 namespace HouseBooking.Controllers
 {

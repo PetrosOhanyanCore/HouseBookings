@@ -1,7 +1,7 @@
 ﻿using BusinessLayer.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model;
+using Model.DTO;
 
 namespace HouseBooking.Controllers
 {

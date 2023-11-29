@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Entity;
-using Model;
+using Model.DTO;
 
 namespace BusinessLayer.IService
 {
