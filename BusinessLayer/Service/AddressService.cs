@@ -9,6 +9,7 @@ using Model.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,32 +29,49 @@ namespace BusinessLayer.Service
 
         public async Task AddAddress(AddressVM addressVM)
         {
-            try
-            {
-                var building = _buildingRepository.Get(addressVM.BuildingId);
+            //using (HttpClient cl = new HttpClient())
+            //{
+            //    cl.BaseAddress = new Uri("hvh");
 
-                if (building == null)
-                    throw new InvalidOperationException("Building not found");
+            //    var request = new HttpRequestMessage
+            //    {
+            //        Method = HttpMethod.Get,
+            //        RequestUri = new Uri("some url"),
+            //        Content = new StringContent("some json", Encoding.UTF8, MediaTypeNames.Application.Json /* or "application/json" in older versions */),
+            //    };
 
-                var dto = new AddressDTO
+            //    var response = await cl.SendAsync(request).ConfigureAwait(false);
+            //    response.EnsureSuccessStatusCode();
+
+            //    var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            //}
+
+                try
                 {
-                    City = addressVM.City,
-                    Country = addressVM.Country,
-                    District = addressVM.District,
-                    House = addressVM.House,
-                    Street = addressVM.Street,
-                    Building = _mapper.Map<BuildingDTO>(building)
-                };
+                    var building = _buildingRepository.Get(addressVM.BuildingId);
 
-                Address address = _mapper.Map<Address>(dto);
-                _addressRepository.Add(address);
+                    if (building == null)
+                        throw new InvalidOperationException("Building not found");
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+                    var dto = new AddressDTO
+                    {
+                        City = addressVM.City,
+                        Country = addressVM.Country,
+                        District = addressVM.District,
+                        House = addressVM.House,
+                        Street = addressVM.Street,
+                        Building = _mapper.Map<BuildingDTO>(building)
+                    };
+
+                    Address address = _mapper.Map<Address>(dto);
+                    _addressRepository.Add(address);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw;
+                }
         }
         public async Task UpdateAddress(AddressVM addressVM)
         {

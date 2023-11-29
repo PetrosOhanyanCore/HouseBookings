@@ -8,6 +8,7 @@ namespace Model.RequestModels
 {
     public class ApartmentVM
     {
+
         public decimal Price { get; set; }
         public int RoomsCount { get; set; }
         public int Bathrooms { get; set; }
