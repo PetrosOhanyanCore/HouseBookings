@@ -5,6 +5,7 @@ using DataLayer.Repository;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using Model.DTO;
+using Model.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,35 @@ namespace BusinessLayer.Service
     public class AddressService : IAddressService
     {
         private readonly IAddressRepository _addressRepository;
+        private readonly IBuildingRepository _buildingRepository;
         private readonly IMapper _mapper;
-        public AddressService(IAddressRepository addressRepository, IMapper mapper)
+        public AddressService(IAddressRepository addressRepository, IBuildingRepository buildingRepository, IMapper mapper)
         {
             this._addressRepository = addressRepository;
             this._mapper = mapper;
+            this._buildingRepository = buildingRepository;
         }
 
-        public async Task AddAddress(AddressDTO addressDTO)
+        public async Task AddAddress(AddressVM addressVM)
         {
             try
             {
-                Address address = _mapper.Map<Address>(addressDTO);
+                var building = _buildingRepository.Get(addressVM.BuildingId);
+
+                if (building == null)
+                    throw new InvalidOperationException("Building not found");
+
+                var dto = new AddressDTO
+                {
+                    City = addressVM.City,
+                    Country = addressVM.Country,
+                    District = addressVM.District,
+                    House = addressVM.House,
+                    Street = addressVM.Street,
+                    Building = _mapper.Map<BuildingDTO>(building)
+                };
+
+                Address address = _mapper.Map<Address>(dto);
                 _addressRepository.Add(address);
 
             }
@@ -37,11 +55,26 @@ namespace BusinessLayer.Service
                 throw;
             }
         }
-        public async Task UpdateAddress(AddressDTO addressDTO)
+        public async Task UpdateAddress(AddressVM addressVM)
         {
             try
             {
-                Address address = _mapper.Map<Address>(addressDTO);
+                var building = _buildingRepository.Get(addressVM.BuildingId);
+
+                if (building == null)
+                    throw new InvalidOperationException("Building not found");
+
+                var dto = new AddressDTO
+                {
+                    City = addressVM.City,
+                    Country = addressVM.Country,
+                    District = addressVM.District,
+                    House = addressVM.House,
+                    Street = addressVM.Street,
+                    Building = _mapper.Map<BuildingDTO>(building)
+                };
+
+                Address address = _mapper.Map<Address>(dto);
                 _addressRepository.Update(address);
 
             }
@@ -83,7 +116,7 @@ namespace BusinessLayer.Service
             var building = await _addressRepository.GetBuildingByAddressIdAsync(id);
             if (building == null)
             {
-               
+
                 return null;
             }
 
@@ -93,10 +126,10 @@ namespace BusinessLayer.Service
 
         public async Task<IEnumerable<AddressDTO>> GetBuildingsByCityAsync(string city)
         {
-            
+
             var buildings = await _addressRepository.GetBuildingsByCityAsync(city);
 
-      
+
             var addressDTOs = buildings.Select(building => _mapper.Map<AddressDTO>(building));
 
             return addressDTOs;
@@ -107,7 +140,7 @@ namespace BusinessLayer.Service
         {
             var buildings = await _addressRepository.GetBuildingsByCountryAsync(country);
 
-            
+
             var addressDTOs = buildings.Select(building => _mapper.Map<AddressDTO>(building));
 
             return addressDTOs;
@@ -116,7 +149,7 @@ namespace BusinessLayer.Service
 
         public async Task<IEnumerable<AddressDTO>> GetBuildingsByDistrictAsync(string district)
         {
-            
+
             var buildings = await _addressRepository.GetBuildingsByDistrictAsync(district);
 
             var addressDTOs = buildings.Select(building => _mapper.Map<AddressDTO>(building));
@@ -125,7 +158,7 @@ namespace BusinessLayer.Service
         }
 
 
-      
+
 
         public async Task<IEnumerable<AddressDTO>> GetBuildingsByHouseTypeAsync(string house, string country)
         {
@@ -138,7 +171,7 @@ namespace BusinessLayer.Service
 
         public async Task<int> GetBuildingsCountByCityAsync(string city)
         {
-            
+
             int buildingCount = await _addressRepository.GetBuildingsCountByCityAsync(city);
 
             return buildingCount;

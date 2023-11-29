@@ -3,6 +3,7 @@ using DataLayer.IRepository;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Model.DTO;
+using Model.RequestModels;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -77,7 +78,7 @@ namespace HouseBooking.Controllers
         }
 
         [HttpPost("/Address/Add")]
-        public async Task<IActionResult> Add([FromBody] AddressDTO address)
+        public async Task<IActionResult> Add([FromBody] AddressVM address)
         {
             await _addressService.AddAddress(address);
             return Ok();
@@ -85,7 +86,7 @@ namespace HouseBooking.Controllers
 
 
         [HttpPut("UpdateAddressAsync/{address}")]
-        public async Task<IActionResult> UpdateBookingAsync(AddressDTO address)
+        public async Task<IActionResult> UpdateBookingAsync([FromBody] AddressVM address)
         {
             await _addressService.UpdateAddress(address);
             return Ok();

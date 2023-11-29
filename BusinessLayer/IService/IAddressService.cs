@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entity;
 using Model.DTO;
+using Model.RequestModels;
 
 namespace DataLayer.IRepository
 {
@@ -18,8 +19,8 @@ namespace DataLayer.IRepository
         Task<IEnumerable<AddressDTO>> GetBuildingsByDistrictAsync(string district);
         Task<IEnumerable<AddressDTO>> GetBuildingsByHouseTypeAsync(string? house, string country);
         Task<int> GetBuildingsCountByCityAsync(string city);
-        Task AddAddress(AddressDTO addressDTO);
-        Task UpdateAddress(AddressDTO addressDTO);
+        Task AddAddress(AddressVM addressDTO);
+        Task UpdateAddress(AddressVM addressDTO);
         Task RemoveAddress(int id);
 
     }
